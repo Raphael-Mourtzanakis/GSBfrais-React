@@ -1,38 +1,77 @@
-.App {
-  text-align: center;
-}
+nav
+    {
+        height: 3.75rem;
+        padding: 1rem;
+        background-color: #f0f0f0;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+nav a
+    {
+        padding: 8px 10px;
+        border-radius: 10px;
+        text-decoration: none;
+        background-color: rgb(230, 230, 230);
+        color: rgba(0, 0, 0, 0.6);
+        transition: 0.25s ease, scale 0.3s ease;
+    }
+nav a:hover
+    {
+        color: rgba(0, 0, 0, 0.5);
+        background-color: rgb(250, 250, 250);
+        transition: 0.2s ease, scale 0.3s ease;
+    }
+nav a:active
+    {
+        color: rgba(0, 0, 0, 0.75);
+        background-color: rgb(220, 220, 220);
+        transition: 0.15s ease, scale 0.15s ease;
+        scale: 95%;
+    }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+#nom-site 
+    {
+        margin-right: 1rem;
+        font-weight: bold;
+        font-size: 110%;
+        color: rgb(90, 90, 90);
+        cursor: default;
+    }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+nav a#login
+    {
+        color: rgba(0, 0, 0, 0.75);
+        margin-left: 91rem;
+        border-radius: 100px;
+        background-color: rgb(51, 197, 255);
+    }
+nav a#login:hover
+    {
+        color: rgba(0, 0, 0, 0.6);
+        background-color: rgb(75, 222, 255);
+    }
+nav a#login:active
+    {
+        color: rgba(0, 0, 0, 0.9);
+        background-color: rgb(83, 180, 218);
+    }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+nav a#logout
+    {
+        color: rgba(0, 0, 0, 0.75);
+        margin-left: 91rem;
+        border-radius: 100px;
+        background-color: rgb(255, 95, 95);
+    }
+nav a#logout:hover
+    {
+        color: rgba(0, 0, 0, 0.6);
+        background-color: rgb(255, 131, 100);
+    }
+nav a#logout:active
+    {
+        color: rgba(0, 0, 0, 0.9);
+        background-color: rgb(218, 95, 83);
+    }
