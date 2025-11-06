@@ -8,6 +8,12 @@ nav
         align-items: center;
     }
 
+#nav-elements
+    {
+        display: flex;
+        gap: 10px;
+    }
+
 nav a
     {
         padding: 8px 10px;
