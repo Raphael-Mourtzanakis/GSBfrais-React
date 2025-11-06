@@ -40,38 +40,49 @@ nav a:active
         cursor: default;
     }
 
-nav a#login
+#login-logout
     {
-        color: rgba(0, 0, 0, 0.75);
-        margin-left: 91rem;
-        border-radius: 100px;
-        background-color: rgb(51, 197, 255);
+        display: flex;
+        margin-left: 83.75rem;
+        gap: 10px;
     }
-nav a#login:hover
+
+#login, #logout
+    {
+        border-radius: 100px;
+        color: rgba(0, 0, 0, 0.75);
+    }
+#login:hover, #logout:hover
     {
         color: rgba(0, 0, 0, 0.6);
-        background-color: rgb(75, 222, 255);
     }
-nav a#login:active
+#login:active, #logout:active
     {
         color: rgba(0, 0, 0, 0.9);
+    }
+
+#login
+    {
+        background-color: rgb(51, 197, 255);
+    }
+#login:hover
+    {
+        background-color: rgb(75, 222, 255);
+    }
+#login:active
+    {
         background-color: rgb(83, 180, 218);
     }
 
-nav a#logout
+#logout
     {
-        color: rgba(0, 0, 0, 0.75);
-        margin-left: 91rem;
-        border-radius: 100px;
         background-color: rgb(255, 95, 95);
     }
-nav a#logout:hover
+#logout:hover
     {
-        color: rgba(0, 0, 0, 0.6);
         background-color: rgb(255, 131, 100);
     }
-nav a#logout:active
+#logout:active
     {
-        color: rgba(0, 0, 0, 0.9);
         background-color: rgb(218, 95, 83);
     }

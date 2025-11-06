@@ -6,24 +6,25 @@ import Dashboard from './pages/Dashboard'
 
 function App() {
   return (
-    <div id="App">
-      <BrowserRouter>
-        {/* Liens temporaires pour tester les routes */}
-        <nav>
-          <span id="nom-site">GSB Frais</span>
-          <Link to="/">Accueil</Link>
-          <Link to="/dashboard">Tableau de bord</Link>
+    <BrowserRouter>
+      {/* Liens temporaires pour tester les routes */}
+      <nav>
+        <span id="nom-site">GSB Frais</span>
+        <Link to="/">Accueil</Link>
+        <Link to="/dashboard">Tableau de bord</Link>
+        <div id="login-logout">
+          <Link to="" id="logout">Déconnexion</Link>
           <Link to="/login" id="login">Connexion</Link>
-        </nav>
+        </div>
+      </nav>
 
-        {/* Routes de l'application */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+      {/* Routes de l'application */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
