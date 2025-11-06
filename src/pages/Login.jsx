@@ -2,7 +2,9 @@ import '../styles/Login.css'
 
 function Login() {
   return (
-    <h1>Login</h1>
+    <div id="login-page">
+      <h1>Connexion</h1>
+    </div>
   );
 }
 

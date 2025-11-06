@@ -2,7 +2,10 @@ import '../styles/Home.css'
 
 function Home() {
   return (
-    <h1>Home</h1>
+    <div id="home-page">
+      <h1>Bienvenue</h1>
+      <h2>sur GSB Frais</h2>
+    </div>
   );
 }
 
