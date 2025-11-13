@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useCallback, useContext, useState } from 'react';
 
 // 1. Création du contexte
     const AuthContext = createContext();
@@ -6,12 +6,12 @@ import { createContext, useContext, useState } from 'react';
 // 2. Fournisseur du contexte (AuthProvider)
     export function AuthProvider({ children }) {
         // État local pour stocker l'utilisateur (null = non connecté)
-        let user = null
+        const [user, setUser] = useState(null)
 
         // 3. Fonction de connexion
             const loginUser = (login, password) => {
                 if (login === "Andre" && password === "secret") {
-                    user = login
+                    setUser(login)
                     return true
                 }
                 return false
@@ -19,7 +19,7 @@ import { createContext, useContext, useState } from 'react';
 
         // 4. Fonction de déconnexion
             const logoutUser = () => {
-                user = null
+                setUser(null)
             };
 
         // 5. Valeurs exposées aux composants enfants

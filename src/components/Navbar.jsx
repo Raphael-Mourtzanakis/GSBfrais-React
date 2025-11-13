@@ -1,7 +1,10 @@
 import {Link} from 'react-router-dom';
 import '../styles/Navbar.css'
+import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
+  const { logoutUser } = useAuth();
+  const { user } = useAuth();
   return (
     <nav>
       <span id="nom-site">GSB Frais</span>
@@ -13,7 +16,7 @@ function Navbar() {
       </div>
 
       <div id="login-logout">
-        <Link to="" id="logout">Déconnexion</Link>
+        <button onClick={logoutUser()} id="logout"> Déconnexion</button>
         <Link to="/login" id="login">Connexion</Link>
       </div>
     </nav>

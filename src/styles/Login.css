@@ -40,6 +40,28 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  text-align: left;
+}
+
+.form-element {
+  display: block;
+}
+
+form input[type="submit"] {
+  background-color: rgb(117, 179, 255);
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+form input[type="submit"]:hover {
+  background-color: rgb(147, 196, 255);
+  transition: 0.15s ease;
+}
+
+form input[type="submit"]:active {
+  background-color: rgb(80, 159, 255);
+  scale: 97% 94%;
+  transition: 0.12s ease;
 }
 
 .login-form label {
