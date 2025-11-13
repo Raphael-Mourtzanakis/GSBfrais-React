@@ -1,5 +1,6 @@
 import {BrowserRouter,Routes,Route,Link} from 'react-router-dom';
 import './App.css'
+import PrivateRoute from './components/PrivateRoute'
 import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import Home from './pages/Home'
@@ -18,7 +19,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard" element={<PrivateRoute> <Dashboard/> </PrivateRoute>} />
             </Routes>
           </div>
         </AuthProvider>
