@@ -9,10 +9,10 @@ import { AuthProvider } from './context/AuthContext'
 function App() {
   return (
       <BrowserRouter>
-        {/* Barre de navigation */}
-        <Navbar/>
-
         <AuthProvider>
+          {/* Barre de navigation */}
+          <Navbar/>
+
           <div id="pages">
             {/* Routes de l'application */}
             <Routes>

@@ -46,6 +46,7 @@ export default function Login() {
               required
             />
           </div>
+          <hr/>
           <input
             type="submit"
             value="Se connecter"

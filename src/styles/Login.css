@@ -6,6 +6,22 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.login-container
+  {
+    margin: auto;
+    margin-top: 10%;
+  }
+
+.form-element input
+  {
+    width: 320px;;
+  }
+
+hr
+  {
+    opacity: 35%;
+  }
+
 /* Style du corps de la page */
 .login-page {
   display: flex;
