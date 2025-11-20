@@ -46,4 +46,19 @@ h2
     font-style: italic;
     color: rgb(157, 157, 157);
     font-size: 18px;
+    cursor: default;
+  }
+
+.search-bar
+  {
+    margin-top: 1rem;
+  }
+
+.search-bar input
+  {
+    height: 2rem;
+    padding: 5px;
+    border:gray solid 0.125rem;
+    border-radius: 5px;
+    font-size: 18px;
   }

@@ -1,10 +1,11 @@
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/FraisTable.css'
 import fraisData from '../data/frais.json'
 
 function FraisTable() {
   const [fraisList, setFraisList] = useState(fraisData);
   const [loading, setLoading] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
     // Simulation d'un appel API avec un délai de 500 ms
     setTimeout(() => {
@@ -14,6 +15,14 @@ function FraisTable() {
   }, []); // Tableau de dépendances vide = exécute une seule fois
 
   if (loading) return <div className="frais-table-container chargement">Chargement des frais...</div>;
+
+  // Logique de filtrage : filtre les frais en fonction du terme de recherche
+  const filteredFrais = fraisList
+    .filter((frais) => frais.montantvalide) // Exclut les frais avec montantvalide = nul
+    .filter((frais) =>
+    frais.anneemois.includes(searchTerm) ||
+    frais.id_visiteur.toString().includes(searchTerm)
+  );
 
   return (
     <div className="frais-table-container">
@@ -33,7 +42,7 @@ function FraisTable() {
           </tr>
         </thead>
         <tbody>
-          {fraisData.map((element, index) => (
+          {filteredFrais.map((element, index) => (
             <tr key={element.id}>
               <td>{element.id_frais}</td>
               <td>{element.id_etat}</td>
@@ -47,6 +56,16 @@ function FraisTable() {
           ))}
         </tbody>
       </table>
+      {/* Champ de recherche pour le filtrage */}
+      <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Rechercher par années-mois, ID visiteur ou montant..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)} // Met à jour searchTerm
+            size="47"
+          />
+      </div>
     </div>
   );
 };
