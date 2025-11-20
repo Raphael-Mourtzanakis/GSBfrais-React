@@ -1,5 +1,33 @@
+h1
+    {
+        cursor: default;
+    }
+
 .dashboard-text
     {
         color: rgb(255, 71, 71);
         font-size: 20px;
+    }
+
+.sous-titre
+    {
+        color: rgb(48, 48, 48);
+        font-size: 20px;
+    }
+
+.user-name
+    {
+        color:rgb(108, 108, 108);
+        font-style: italic;
+        transition: color 0.25s ease;
+    }
+.user-name:hover
+    {
+        color:rgb(157, 157, 157);
+        transition: color 0.25s ease;
+    }
+
+.frais-table-container
+    {
+        margin-top: 1.5rem;
     }

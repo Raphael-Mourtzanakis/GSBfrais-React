@@ -56,16 +56,33 @@ nav button:active
         color: rgb(90, 90, 90);
         cursor: default;
     }
-
+#user-name
+    {
+        margin-left: auto;
+        font-weight: 600;
+        color:rgb(108, 108, 108);
+        font-style: italic;
+        cursor: default;
+        transition: color 0.25s ease;
+    }
+#user-name:hover
+    {
+        color:rgb(157, 157, 157);
+        transition: color 0.25s ease;
+    }
+#logout
+    {
+        margin-left: 1rem;
+    }
 #login, #logout
     {
-        margin-left: 90.75rem;
         border-radius: 100px;
         color: rgba(0, 0, 0, 0.75);
+        margin-right: 0.75rem;
     }
 #login
     {
-        margin-left: 100rem;
+        margin-left: auto;
     }
 #login:hover, #logout:hover
     {

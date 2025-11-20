@@ -10,13 +10,13 @@ function Navbar() {
       {/* Liens temporaires pour tester les routes */}
       <div id="nav-elements">
         <Link to="/">Accueil</Link>
-        {user != null && (<Link to="/dashboard">Tableau de bord</Link>)}
+        {user && (<Link to="/dashboard">Tableau de bord</Link>)}
       </div>
 
         {user == null ? (
           <Link to="/login" id="login">Connexion</Link>
         ) : (
-          <button onClick={logoutUser} id="logout"> Déconnexion</button>
+          <><p id="user-name">{user}</p> <button onClick={logoutUser} id="logout"> Déconnexion</button></>
         )}
     </nav>
   );

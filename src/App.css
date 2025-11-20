@@ -2,3 +2,7 @@
     {
         margin: 25px 50px;
     }
+h1
+    {
+        cursor: default;
+    }

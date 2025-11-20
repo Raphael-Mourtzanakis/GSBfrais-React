@@ -1,0 +1,49 @@
+h2
+  {
+    margin-bottom: 1rem;
+    cursor: default;
+  }
+
+.frais-table-page {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.frais-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-left: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0;
+}
+
+.frais-table th, .frais-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #0000000d;
+}
+
+.frais-table th {
+  background-color: #f1f2f3;
+  font-weight: 700;
+  cursor: default;
+  border-right: 1px solid #00000013;
+}
+
+.frais-table tr {
+  background-color: #fcfcfc;
+}
+
+.frais-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.chargement
+  {
+    font-weight: 500;
+    font-style: italic;
+    color: rgb(157, 157, 157);
+    font-size: 18px;
+  }
