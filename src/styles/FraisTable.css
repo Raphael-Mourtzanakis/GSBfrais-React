@@ -91,11 +91,10 @@ input[type="checkbox"]
 .montant-valide-min
   {
     display: flex;
+    align-content: center;
   }
 .montant-valide-min input
   {
-    margin-left: 0.5rem;
-
     height: 1.75rem;
     padding: 3px;
     border:gray solid 0.1rem;

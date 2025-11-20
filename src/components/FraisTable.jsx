@@ -84,7 +84,7 @@ function FraisTable() {
                     onChange={(e) => setFilterMontantValideMin(e.target.checked)} // Met à jour filterMontantValideMin
                   />
                   <legend>Afficher les frais avec montant validé supérieur à</legend>
-                </label>
+              </label>
                 <input
                   type="number"
                   placeholder="Insérer un montant..."
