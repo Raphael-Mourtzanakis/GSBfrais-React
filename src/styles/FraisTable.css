@@ -49,11 +49,6 @@ h2
     cursor: default;
   }
 
-.search-bar
-  {
-    margin-top: 1rem;
-  }
-
 .search-bar input
   {
     height: 2rem;
@@ -61,4 +56,29 @@ h2
     border:gray solid 0.125rem;
     border-radius: 5px;
     font-size: 18px;
+    margin-top: 0.5rem;
+  }
+
+.checkbox
+  {
+    margin-top: 1rem;
+  }
+
+.checkbox label
+  {
+    display: flex;
+  }
+.checkbox label legend
+  {
+    margin-left: 0.5rem;
+  }
+
+.search-bar label
+  {
+    display: flex;
+    align-items: center;
+  }
+.search-bar label legend
+  {
+    margin-right: 0.5rem;
   }

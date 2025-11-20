@@ -6,6 +6,7 @@ function FraisTable() {
   const [fraisList, setFraisList] = useState(fraisData);
   const [loading, setLoading] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [filterNonNull, setFilterNonNull] = useState(true);
   useEffect(() => {
     // Simulation d'un appel API avec un délai de 500 ms
     setTimeout(() => {
@@ -18,7 +19,7 @@ function FraisTable() {
 
   // Logique de filtrage : filtre les frais en fonction du terme de recherche
   const filteredFrais = fraisList
-    .filter((frais) => frais.montantvalide) // Exclut les frais avec montantvalide = nul
+    .filter((frais) => (filterNonNull && !frais.montantvalide) || frais.montantvalide) // Exclut les frais avec montantvalide = nul
     .filter((frais) =>
     frais.anneemois.includes(searchTerm) ||
     frais.id_visiteur.toString().includes(searchTerm)
@@ -56,8 +57,22 @@ function FraisTable() {
           ))}
         </tbody>
       </table>
+      {/* Case à cocher pour afficher/cacher les frais avec montant non validé */}
+      <div className="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              placeholder="Rechercher par années-mois, ID visiteur ou montant..."
+              checked={filterNonNull}
+              onChange={(e) => setFilterNonNull(e.target.checked)} // Met à jour searchTerm
+            />
+            <legend>Afficher les frais avec montant non validé</legend>
+          </label>
+      </div>
       {/* Champ de recherche pour le filtrage */}
       <div className="search-bar">
+        <label>
+          <legend>Recherche :</legend>
           <input
             type="text"
             placeholder="Rechercher par années-mois, ID visiteur ou montant..."
@@ -65,6 +80,7 @@ function FraisTable() {
             onChange={(e) => setSearchTerm(e.target.value)} // Met à jour searchTerm
             size="47"
           />
+          </label>
       </div>
     </div>
   );
