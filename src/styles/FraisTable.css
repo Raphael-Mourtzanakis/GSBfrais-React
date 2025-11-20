@@ -78,7 +78,7 @@ input[type="checkbox"]
     margin-left: 0.5rem;
   }
 
-.search-bar label
+.search-bar label, .montant-valide-min label, .montant-valide-min
   {
     display: flex;
     align-items: center;
@@ -88,12 +88,7 @@ input[type="checkbox"]
     margin-right: 0.5rem;
   }
 
-.montant-valide-min
-  {
-    display: flex;
-    align-content: center;
-  }
-.montant-valide-min input
+.montant-valide-min input[type="number"]
   {
     height: 1.75rem;
     padding: 3px;
@@ -101,6 +96,7 @@ input[type="checkbox"]
     border-radius: 5px;
     font-size: 18px;
     margin-top: 0.5rem;
+    margin-left: 0.5rem;
   }
 
 label
