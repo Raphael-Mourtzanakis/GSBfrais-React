@@ -6,7 +6,9 @@ function FraisTable() {
   const [fraisList, setFraisList] = useState(fraisData);
   const [loading, setLoading] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterNonNull, setFilterNonNull] = useState(true);
+  const [filterMontantValideNonNull, setFilterMontantValideNonNull] = useState(false);
+  const [filterMontantValideMin, setFilterMontantValideMin] = useState(false);
+  const [montantValideMin, setMontantValideMin] = useState(0);
   useEffect(() => {
     // Simulation d'un appel API avec un délai de 500 ms
     setTimeout(() => {
@@ -19,7 +21,8 @@ function FraisTable() {
 
   // Logique de filtrage : filtre les frais en fonction du terme de recherche
   const filteredFrais = fraisList
-    .filter((frais) => (filterNonNull && !frais.montantvalide) || frais.montantvalide) // Exclut les frais avec montantvalide = nul
+    .filter((frais) => (filterMontantValideMin && (frais.montantvalide > montantValideMin)) || !filterMontantValideMin) // Afficher les frais avec montantvalide supérieur
+    .filter((frais) => (filterMontantValideNonNull && !frais.montantvalide) || frais.montantvalide) // Afficher les frais avec montantvalide = null
     .filter((frais) =>
     frais.anneemois.includes(searchTerm) ||
     frais.id_visiteur.toString().includes(searchTerm)
@@ -57,30 +60,55 @@ function FraisTable() {
           ))}
         </tbody>
       </table>
-      {/* Case à cocher pour afficher/cacher les frais avec montant non validé */}
-      <div className="checkbox">
+
+      <div className="filtrage">
+        {/* Case à cocher pour afficher/cacher les frais avec montant non validé */}
+        <div className="checkbox">
+            <div className="afficher-montant-valide">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={filterMontantValideNonNull}
+                  onChange={(e) => setFilterMontantValideNonNull(e.target.checked)} // Met à jour filterMontantValideNonNull
+                />
+                <legend>Afficher les frais avec montant non validé</legend>
+              </label>
+            </div>
+
+            {/* Champ de montant validé minimum */}
+            <div className="montant-valide-min">
+              <label>
+                  <input
+                    type="checkbox"
+                    checked={filterMontantValideMin}
+                    onChange={(e) => setFilterMontantValideMin(e.target.checked)} // Met à jour filterMontantValideMin
+                  />
+                  <legend>Afficher les frais avec montant validé supérieur à</legend>
+                </label>
+                <input
+                  type="number"
+                  placeholder="Insérer un montant..."
+                  value={montantValideMin}
+                  onChange={(e) => setMontantValideMin(e.target.value)} // Met à jour montantValideMin
+                  min="0"
+                  step="0.05"
+                />
+            </div>
+        </div>
+        
+        {/* Champ de recherche pour le filtrage */}
+        <div className="search-bar">
           <label>
+            <legend>Recherche :</legend>
             <input
-              type="checkbox"
+              type="text"
               placeholder="Rechercher par années-mois, ID visiteur ou montant..."
-              checked={filterNonNull}
-              onChange={(e) => setFilterNonNull(e.target.checked)} // Met à jour searchTerm
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)} // Met à jour searchTerm
+              size="47"
             />
-            <legend>Afficher les frais avec montant non validé</legend>
-          </label>
-      </div>
-      {/* Champ de recherche pour le filtrage */}
-      <div className="search-bar">
-        <label>
-          <legend>Recherche :</legend>
-          <input
-            type="text"
-            placeholder="Rechercher par années-mois, ID visiteur ou montant..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)} // Met à jour searchTerm
-            size="47"
-          />
-          </label>
+            </label>
+        </div>
       </div>
     </div>
   );
