@@ -40,7 +40,7 @@ export default function Login() {
             <label>Mot de passe : </label><br/>
             <input
               type="password"
-              name="pasword"
+              name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

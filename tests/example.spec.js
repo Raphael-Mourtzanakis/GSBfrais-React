@@ -1,19 +1,44 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+/*
+test('A le titre', async ({ page }) => {
+  await page.goto('http://localhost:3000/');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+  // Vérifie si il y a le titre "GSB Frais" à la page
+  await expect(page).toHaveTitle(/GSB Frais/);
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('Page de connexion', async ({ page }) => {
+  await page.goto('http://localhost:3000/');
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  // Clique sur le bouton se connexion
+  await page.getByRole('link', { name: 'Connexion' }).click();
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  // Vérifie qu'il y ait écrit "Connexion" dans un header dans la page
+  await expect(page.getByRole('heading', { name: 'Connexion' })).toBeVisible();
+});
+*/
+
+test('Authentification', async ({ page }) => {
+  await page.goto('http://localhost:3000/');
+
+  // Clique sur le bouton se connexion
+  await page.getByRole('link', { name: 'Connexion' }).click();
+
+  // Vérifie que l'URL est bien celle de la page login
+  await expect(page).toHaveURL('http://localhost:3000/login');
+
+  // Inscrit les identifiants du compte
+  await page.fill('input[name="login"]', "Andre");
+  await page.fill('input[name="password"]', "secret");
+
+  // Clique sur le bouton pour valider le formulaire
+  await page.click('input[type="submit"]')
+
+  // Vérifie si on est à la page du Dashboard
+  await expect(page).toHaveURL('http://localhost:3000/dashboard');
+
+  // Vérifie qu'il y ait bien écrit "Andre" dans la page
+  await page.getByRole('paragraph',{name: 'Andre'});
 });
