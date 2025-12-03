@@ -20,7 +20,7 @@ test('Page de connexion', async ({ page }) => {
 });
 */
 
-test('Authentification', async ({ page }) => {
+test('Login with valid credentials', async ({ page }) => {
   await page.goto('http://localhost:3000/');
 
   // Clique sur le bouton se connexion
@@ -40,5 +40,9 @@ test('Authentification', async ({ page }) => {
   await expect(page).toHaveURL('http://localhost:3000/dashboard');
 
   // Vérifie qu'il y ait bien écrit "Andre" dans la page
-  await page.getByRole('paragraph',{name: 'Andre'});
+  //await expect(page.getByRole('paragraph', {name: "Andre"})).toBeVisible();
+    /// Vérifier l'ID à la place
+
+  // Vérifie qu'il y ait le bouton Déconnexion à la place de Connexion
+  await expect(page.getByRole('link',{name: "Déconnexion"})).toBeVisible();
 });
