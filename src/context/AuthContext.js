@@ -16,6 +16,8 @@ import { signIn, signOut, getCurrentUser, getAuthToken } from '../services/authS
             if (user && token) { 
                 setUser(user);
                 setToken(token);
+            }
+            if ({user} && {token}) {
                 setLoading(false); // Fin du chargement si le user et le token sont définis
             }
         }, []
