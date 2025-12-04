@@ -17,6 +17,7 @@ export default function Login() {
           await loginUser(login, password);
           navigate('/dashboard'); // Redirige vers /dashboard si succès
       } catch {
+          setPassword(''); // Efface le mot de passe écrit en cas d'échouage (pour la cyber sécurité)
           alert("Identifiant ou mot de passe incorrect"); // Affiche une erreur si échouement
       }
   };
