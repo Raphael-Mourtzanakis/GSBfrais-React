@@ -4,9 +4,10 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
 function FraisTable() {
+  const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
   const { user, token } = useAuth();
-  const [fraisList, setFraisList] = useState(fraisData);
-  const [loading, setLoading] = useState([]);
+  const [fraisList, setFraisList] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterMontantValideNonNull, setFilterMontantValideNonNull] = useState(false);
   const [filterMontantValideMin, setFilterMontantValideMin] = useState(false);
@@ -14,24 +15,25 @@ function FraisTable() {
 
   useEffect(() => { 
     const fetchFrais = async () => { 
-      try { 
-        const response = await axios.get(
-          `${API_URL}frais/liste/${user.id_visiteur}`, // Requête get à l'API à l'url 'http://gsb.julliand.etu.lmdsio.com/api/frais/liste/{id_visiteur}
-          { 
-            headers: { 
-              Authorization: `Bearer ${token}`, 
-            },
-          }
-        );
-        // TODO : Met à jour l'état avec les données de l'API
-        // TODO : Met fin à l'état de chargement
+      try {
+        // Requête get à l'API à l'url 'http://gsb.julliand.etu.lmdsio.com/api/frais/liste/{id_visiteur}
+          const response = await axios.get(
+            `${API_URL}frais/liste/${user.id_visiteur}`,
+            { 
+              headers: { 
+                Authorization: `Bearer ${token}`, 
+              },
+            }
+          );
+        setFraisList(response.data); // Met à jour l'état avec les données de l'API
+        setLoading(false); // Arrête le chargement
       } catch (error) {
-          console.error('Erreur lors de la récupération des frais:', error);
-          // TODO : Arrête le chargement même en cas d'erreur
+          console.error('Erreur lors de la récupération des frais :', error);
+          setLoading(false); // Arrête le chargement
       }
-    }
-  }
-)
+    }; 
+    fetchFrais(); // Appelle la fonction pour récupérer les données 
+  }, []); // Tableau de dépendances vide = exécute une seule fois
 
   if (loading) return <div className="frais-table-container chargement">Chargement des frais...</div>;
 
