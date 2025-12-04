@@ -25,6 +25,7 @@ import { signIn, signOut, getCurrentUser, getAuthToken } from '../services/authS
                 const data = await signIn(login, password); 
                 setUser(data.visiteur);
                 setToken(data.access_token); 
+                setLoading(false);
                 return data;
             };
 
