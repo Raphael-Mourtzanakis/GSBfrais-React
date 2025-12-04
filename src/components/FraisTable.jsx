@@ -1,21 +1,37 @@
 import { useState, useEffect } from 'react';
 import '../styles/FraisTable.css'
-import fraisData from '../data/frais.json'
+import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 function FraisTable() {
+  const { user, token } = useAuth();
   const [fraisList, setFraisList] = useState(fraisData);
   const [loading, setLoading] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterMontantValideNonNull, setFilterMontantValideNonNull] = useState(false);
   const [filterMontantValideMin, setFilterMontantValideMin] = useState(false);
   const [montantValideMin, setMontantValideMin] = useState(0);
-  useEffect(() => {
-    // Simulation d'un appel API avec un délai de 500 ms
-    setTimeout(() => {
-      setFraisList(fraisData); // Met à jour l'état avec les données du fichier JSON
-      setLoading(false); // Met fin à l'état de chargement
-    }, 500); // Délai pour simuler un chargement
-  }, []); // Tableau de dépendances vide = exécute une seule fois
+
+  useEffect(() => { 
+    const fetchFrais = async () => { 
+      try { 
+        const response = await axios.get(
+          `${API_URL}frais/liste/${user.id_visiteur}`, // Requête get à l'API à l'url 'http://gsb.julliand.etu.lmdsio.com/api/frais/liste/{id_visiteur}
+          { 
+            headers: { 
+              Authorization: `Bearer ${token}`, 
+            },
+          }
+        );
+        // TODO : Met à jour l'état avec les données de l'API
+        // TODO : Met fin à l'état de chargement
+      } catch (error) {
+          console.error('Erreur lors de la récupération des frais:', error);
+          // TODO : Arrête le chargement même en cas d'erreur
+      }
+    }
+  }
+)
 
   if (loading) return <div className="frais-table-container chargement">Chargement des frais...</div>;
 
