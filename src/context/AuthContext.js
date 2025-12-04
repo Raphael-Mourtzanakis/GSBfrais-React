@@ -22,10 +22,9 @@ import { signIn, signOut, getCurrentUser, getAuthToken } from '../services/authS
 
             // 3. Fonction de connexion
             const loginUser = async (login, password) => { 
-                const data = await signIn(login, password); 
+                const data = await signIn(login, password);
                 setUser(data.visiteur);
-                setToken(data.access_token); 
-                setLoading(false);
+                setToken(data.access_token);
                 return data;
             };
 
