@@ -7,7 +7,7 @@ function Dashboard() {
   return (
     <div id="dashboard-page">
       <h1>Tableau de bord</h1>
-      <p className="sous-titre">Bonjour <b className="user-name">{user}</b> !</p>
+      <p className="sous-titre">Bonjour <b className="user-name">{user.nom_visiteur}</b> !</p>
       <FraisTable/>
     </div>
   );

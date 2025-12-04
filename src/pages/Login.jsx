@@ -11,13 +11,14 @@ export default function Login() {
   const navigate = useNavigate();
 
   // Fonction de soumission du formulaire (à définir)
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Empêche le rechargement de la page
-    if (loginUser(login, password)) {
-      navigate('/dashboard') // Redirige vers /dashboard si succès
-    } else {
-      alert("Identifiant ou mot de passe incorrect") // Affiche une erreur si échouement
-    }
+  const handleSubmit = async (e) => {
+      e.preventDefault(); // Empêche le rechargement de la page
+      try {
+          await loginUser(login, password);
+          navigate('/dashboard'); // Redirige vers /dashboard si succès
+      } catch {
+          alert("Identifiant ou mot de passe incorrect"); // Affiche une erreur si échouement
+      }
   };
 
   // 5. Rend le formulaire

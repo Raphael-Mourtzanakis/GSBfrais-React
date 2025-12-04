@@ -16,7 +16,7 @@ function Navbar() {
         {user == null ? (
           <Link to="/login" id="login">Connexion</Link>
         ) : (
-          <><p id="user-name">{user}</p> <button onClick={logoutUser} id="logout"> Déconnexion</button></>
+          <><p id="user-name">{user.nom_visiteur}</p> <button onClick={logoutUser} id="logout"> Déconnexion</button></>
         )}
     </nav>
   );
