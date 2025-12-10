@@ -46,3 +46,29 @@ test('Login with valid credentials', async ({ page }) => {
   // Vérifie qu'il y ait le bouton Déconnexion à la place de Connexion
   //await expect(page.getByRole('link',{name: "Déconnexion"})).toBeVisible();
 });
+
+test('Login with invalid credentials', async ({ page }) => {
+  await page.goto('http://localhost:3000/');
+
+  // Clique sur le bouton se connexion
+  await page.getByRole('link', { name: 'Connexion' }).click();
+
+  // Vérifie que l'URL est bien celle de la page login
+  await expect(page).toHaveURL('http://localhost:3000/login');
+
+  // Inscrit les identifiants du compte
+  await page.fill('input[name="login"]', "Andre");
+  await page.fill('input[name="password"]', "secrete");
+
+  // Clique sur le bouton pour valider le formulaire
+  await page.click('input[type="submit"]')
+
+  // Vérifie si il y a une boîte de dialogue alert
+  // Vérifie que l'alert dit que les identifiants sont incorrects
+  // Clique sur le "Ok" de l'alert
+  page.on("dialog", async (dialog) => { 
+    expect(dialog.type()).toContain("alert"); 
+    expect(dialog.message()).toContain("Identifiant ou mot de passe incorrect"); 
+    await dialog.accept(); 
+  });
+});
