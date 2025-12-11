@@ -1,0 +1,14 @@
+h1.centered
+    {
+        cursor: default;
+        text-align: center;
+    }
+
+.chargement
+  {
+    font-weight: 500;
+    font-style: italic;
+    color: rgb(157, 157, 157);
+    font-size: 18px;
+    cursor: progress;
+  }

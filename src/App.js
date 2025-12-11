@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
+import FraisAdd from './pages/FraisAdd'
 import { AuthProvider } from './context/AuthContext'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<PrivateRoute> <Dashboard/> </PrivateRoute>} />
+              <Route path="/frais/ajouter" element={<PrivateRoute> <FraisAdd/> </PrivateRoute>} />
             </Routes>
           </div>
         </AuthProvider>
