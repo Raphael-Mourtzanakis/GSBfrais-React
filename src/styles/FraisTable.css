@@ -61,7 +61,7 @@ h2
 
 .filtrage
   {
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
   }
 
 input[type="checkbox"]
@@ -102,4 +102,56 @@ input[type="checkbox"]
 label
   {
     font-size: 18px;
+  }
+
+.add-button {
+  padding: 9px;
+  background-color: #0084ff;
+  color: white;
+  border-radius: 5px;
+  margin-top: 15px;
+  font-size: 17px;
+  transition: 0.25s ease;
+  text-decoration: none;
+  display: block;
+  width: 135px;
+}
+
+.add-button:hover {
+  background-color: #329cff;
+  transition: 0.25s ease;
+}
+
+.add-button:active {
+  background-color: #0057a8;
+  scale: 95% 93%;
+  transition: 0.15s ease;
+}
+
+.edit-button 
+  { 
+    background-color: #ffc107;
+    padding: 9px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 17px;
+    transition: 0.25s ease;
+    text-decoration: none;
+    display: block;
+  }
+
+.edit-button:hover
+  {
+    background-color: rgb(255, 217, 0);
+    transition: 0.25s ease;
+  }
+
+.edit-button:active
+  {
+    background-color: #e0a800;
+    scale: 95% 93%;
+    transition: 0.15s ease;
   }

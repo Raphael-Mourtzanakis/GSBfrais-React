@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import '../styles/FraisTable.css'
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 function FraisTable() {
   const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
@@ -12,6 +14,7 @@ function FraisTable() {
   const [filterMontantValideNonNull, setFilterMontantValideNonNull] = useState(false);
   const [filterMontantValideMin, setFilterMontantValideMin] = useState(false);
   const [montantValideMin, setMontantValideMin] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => { 
     const fetchFrais = async () => { 
@@ -61,6 +64,7 @@ function FraisTable() {
             <th>Date de modification</th>
             <th>Montant saisi</th>
             <th>Montant validé</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -74,10 +78,17 @@ function FraisTable() {
               <td>{element.datemodification}</td>
               <td></td>
               <td>{element.montantvalide} {element.montantvalide && "€"}</td>
+              <td> 
+                <button onClick={() => navigate(`/frais/modifier/${element.id_frais}`)} className="edit-button" > 
+                  Modifier
+                </button> 
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      <Link to="/frais/ajouter" className="add-button">Ajouter un frais</Link>
 
       <div className="filtrage">
         {/* Case à cocher pour afficher/cacher les frais avec montant non validé */}

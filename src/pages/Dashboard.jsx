@@ -1,6 +1,7 @@
 import FraisTable from '../components/FraisTable'
 import '../styles/Dashboard.css'
 import { useAuth } from '../context/AuthContext';
+import {Link} from 'react-router-dom';
 
 function Dashboard() {
   const { user } = useAuth();

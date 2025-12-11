@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { getCurrentUser } from '../services/authService';
 import axios from 'axios';
 
-function FraisForm() {
+function FraisForm({type}) {
     const [idFrais, setIdFrais] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -76,7 +76,7 @@ function FraisForm() {
                 </label>
 
                 <button type="submit" disabled={loading}>
-                    {loading ? 'Enregistement...' : 'Ajouter'}
+                    {loading ? 'Enregistement...' : type}
                 </button>
             </div>
         </form>

@@ -25,7 +25,7 @@
   border-radius: 4px;
 }
 
-button {
+button[type="submit"] {
   padding: 10px;
   background-color: #007bff;
   color: white;
@@ -38,18 +38,18 @@ button {
   transition: 0.25s ease;
 }
 
-button:hover {
+button[type="submit"]:hover {
   background-color: #3094ff;
   transition: 0.25s ease;
 }
 
-button:active {
+button[type="submit"]:active {
   background-color: #0056b3;
   scale: 97% 95%;
   transition: 0.15s ease;
 }
 
-button:disabled {
+button[type="submit"]:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
