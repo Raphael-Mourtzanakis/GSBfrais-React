@@ -73,7 +73,7 @@ function FraisTable() {
               <td>{element.nbjustificatifs}</td>
               <td>{element.datemodification}</td>
               <td></td>
-              <td>{element.montantvalide}</td>
+              <td>{element.montantvalide} {element.montantvalide && "€"}</td>
             </tr>
           ))}
         </tbody>
@@ -107,9 +107,9 @@ function FraisTable() {
                   type="number"
                   placeholder="Insérer un montant..."
                   value={montantValideMin}
-                  onChange={(e) => setMontantValideMin(e.target.value)} // Met à jour montantValideMin
+                  onChange={(e) => {if (e.target.value >= 0) setMontantValideMin(e.target.value)}} // Met à jour montantValideMin si il est supérieur ou égal à 0
                   min="0"
-                  step="0.05"
+                  step="0.01"
                 />
             </div>
         </div>

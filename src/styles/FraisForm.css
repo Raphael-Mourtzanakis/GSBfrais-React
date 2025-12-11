@@ -32,10 +32,21 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 17px;
+  transition: 0.25s ease;
 }
 
 button:hover {
+  background-color: #3094ff;
+  transition: 0.25s ease;
+}
+
+button:active {
   background-color: #0056b3;
+  scale: 97% 95%;
+  transition: 0.15s ease;
 }
 
 button:disabled {
@@ -81,16 +92,29 @@ input[type="number"]
     font-size: 18px;
   }
 
-label
+input[type="number"]:disabled
   {
+    height: 1.75rem;
+    padding: 3px;
+    border:rgb(180, 180, 180) solid 0.05rem;
+    border-radius: 5px;
+    font-size: 18px;
+    color: rgb(100, 100, 100);
+    cursor: not-allowed
+  }
+
+input[type="month"]
+  {
+    height: 1.85rem;
+    padding: 3px;
+    border:gray solid 0.125rem;
+    border-radius: 5px;
     font-size: 18px;
   }
 
-button[type=submit]
+label
   {
-    display:flex;
-    margin-top: 10px;
-    font-size: 15px;
+    font-size: 18px;
   }
 
 .form-container

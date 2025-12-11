@@ -11,6 +11,7 @@ function Navbar() {
       <div id="nav-elements">
         <Link to="/">Accueil</Link>
         {user && (<Link to="/dashboard">Tableau de bord</Link>)}
+        {user && (<Link to="/frais/ajouter">Ajouter un frais</Link>)}
       </div>
 
         {user == null ? (

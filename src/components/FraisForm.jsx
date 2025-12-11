@@ -1,5 +1,9 @@
 import '../styles/FraisForm.css'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { getCurrentUser } from '../services/authService';
+import axios from 'axios';
 
 function FraisForm() {
     const [idFrais, setIdFrais] = useState(null);
@@ -7,14 +11,38 @@ function FraisForm() {
     const [error, setError] = useState("");
     const [anneeMois, setAnneeMois] = useState("");
     const [nbJustificatifs, setNbJustificatifs] = useState(0);
-    const [montant, setMontant] = useState(0.0);
+    const navigate = useNavigate();
+    const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
+    const {token} = useAuth();
 
-    const handleSubmit = ()=>(
-        alert("Formulaire soumis : \n" + anneeMois + "\n" + nbJustificatifs + "\n" + montant + " €")
-    )
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Empêche le rechargement de la page
+        setLoading(true);
+        setError("");
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('Token manquant');
+            const fraisData = {
+                anneemois: anneeMois,
+                nbjustificatifs: parseInt(nbJustificatifs, 10),
+                id_visiteur: getCurrentUser()["id_visiteur"]
+            };
+            const response = await axios.post(
+                `${API_URL}frais/ajout`, fraisData, {headers: { Authorization: `Bearer ${token}` },}
+            );
+            console.log(response);
+            navigate('/dashboard'); // Redirige vers /dashboard si succès
+        } catch(err) {
+            console.error('Erreur:', err);
+            setError(err.response?.data?.message || err.message || 'Erreur lors de l\'enregistrement');
+        } finally {
+            setLoading(false);
+        }
+    }
 
     return (
         <div className="frais-form-container">
+        <h2>Saisissez le frais</h2>
         <form onSubmit={handleSubmit}>
             <div className="form-container">
                 <label>
@@ -42,19 +70,15 @@ function FraisForm() {
                 <label>
                     <legend>Montant :</legend>
                     <input
-                        required
+                        disabled
                         type="number"
-                        value={montant}
-                        min="0.0"
-                        step="0.25"
-                        onChange={(e) => {if (e.target.value >= 0)  setMontant(e.target.value)}} // Changer la valeur à une valeur supérieure ou égale à 0
                     /> €
                 </label>
-            </div>
 
-            <button type="submit" disabled={loading}>
-                {loading ? 'Enregistrer' : 'Ajouter'}
-            </button>
+                <button type="submit" disabled={loading}>
+                    {loading ? 'Enregistement...' : 'Ajouter'}
+                </button>
+            </div>
         </form>
         </div>
     );
