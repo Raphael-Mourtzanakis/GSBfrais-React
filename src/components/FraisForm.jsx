@@ -5,17 +5,16 @@ import { useAuth } from '../context/AuthContext';
 import { getCurrentUser } from '../services/authService';
 import axios from 'axios';
 
-function FraisForm({type, unFraisData}) {
+function FraisForm({type, unFrais}) {
     const [idFrais, setIdFrais] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [anneeMois, setAnneeMois] = useState("");
-    const [nbJustificatifs, setNbJustificatifs] = useState(0);
+    const [nbJustificatifs, setNbJustificatifs] = useState(parseInt(0));
 	const [montant, setMontant] = useState(null);
     const navigate = useNavigate();
     const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
     const {token} = useAuth();
-	const [unFrais, setUnFrais] = useState(unFraisData);
 
 	// Pré-remplir le formulaire si on modifie un frais existant
 	useEffect(() => { 
@@ -34,15 +33,21 @@ function FraisForm({type, unFraisData}) {
         try {
             const token = localStorage.getItem('token');
             if (!token) throw new Error('Token manquant');
-            const fraisData = {
-                anneemois: anneeMois,
-                nbjustificatifs: parseInt(nbJustificatifs, 10),
-                id_visiteur: getCurrentUser()["id_visiteur"]
-            };
-            const response = await axios.post(
-                `${API_URL}frais/ajout`, fraisData, {headers: { Authorization: `Bearer ${token}` },}
-            );
-            console.log(response);
+			const unFraisData = { 
+				anneemois: anneeMois,
+				nbjustificatifs: parseInt(nbJustificatifs, 10),
+			};
+			if (unFrais) { // Mise à jour d'un frais existant (UPDATE)
+				unFraisData["id_frais"] = idFrais; // ajoute id_frais au JSON unFraisData
+				unFraisData["montantvalide"] = parseFloat(montant);
+				// TODO : compléter la requête
+				const response = await axios.post(`${API_URL}frais/modif`, unFraisData, { headers: { Authorization: `Bearer ${token}` }, });
+				console.log(response);
+			} else { // Ajout d'un nouveau frais (CREATE)
+				unFraisData["id_visiteur" = getCurrentUser()["id_visiteur"]];
+				const response = await axios.post(`${API_URL}frais/ajout`, unFraisData, { headers: { Authorization: `Bearer ${token}` }, });
+				console.log(response);
+			}
             navigate('/dashboard'); // Redirige vers /dashboard si succès
         } catch(err) {
             console.error('Erreur:', err);
@@ -75,7 +80,7 @@ function FraisForm({type, unFraisData}) {
                         type="number"
                         value={nbJustificatifs}
                         min="0"
-                        onChange={(e) => {if (e.target.value >= 0) setNbJustificatifs(Math.trunc(e.target.value))}} // Changer la valeur à un entier supérieur ou égal à 0
+                        onChange={(e) => {if (e.target.value >= 0) setNbJustificatifs(Math.trunc(parseInt(e.target.value)))}} // Changer la valeur à un entier supérieur ou égal à 0 en enlevant les chiffres après la virgule et la virgule
                     />
                 </label>
 

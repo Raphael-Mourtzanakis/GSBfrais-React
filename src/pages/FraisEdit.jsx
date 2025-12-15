@@ -31,7 +31,7 @@ function FraisEdit() {
   return (
     <div className="frais-edit-page">
       <h1 className="centered">Modification de frais</h1>
-      <FraisForm type="Modifier" unFraisData={unFrais}/>
+      <FraisForm type="Modifier" unFrais={unFrais}/>
     </div>
   );
 }
