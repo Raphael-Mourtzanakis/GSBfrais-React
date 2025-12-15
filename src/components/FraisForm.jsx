@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getCurrentUser } from '../services/authService';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 function FraisForm({type}) {
     const [idFrais, setIdFrais] = useState(null);
@@ -11,9 +12,20 @@ function FraisForm({type}) {
     const [error, setError] = useState("");
     const [anneeMois, setAnneeMois] = useState("");
     const [nbJustificatifs, setNbJustificatifs] = useState(0);
+	const [montant, setMontant] = useState(0);
     const navigate = useNavigate();
     const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
     const {token} = useAuth();
+	const [unFrais, setUnFrais] = useState(null);
+
+	// Pré-remplir le formulaire si on modifie un frais existant
+	useEffect(() => { 
+		if (unFrais) { 
+			setIdFrais(unFrais.id_frais);
+			setMontant(unFrais.montantvalide || '');
+			// TODO : compléter en affectant la valeur à anneeMois et nbJustificatifs
+		} }, [unFrais]
+	);
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Empêche le rechargement de la page
@@ -72,6 +84,7 @@ function FraisForm({type}) {
                     <input
                         disabled
                         type="number"
+						value={montant}
                     /> €
                 </label>
 

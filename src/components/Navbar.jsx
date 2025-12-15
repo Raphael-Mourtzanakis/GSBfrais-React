@@ -2,6 +2,26 @@ import {Link} from 'react-router-dom';
 import '../styles/Navbar.css'
 import { useAuth } from '../context/AuthContext';
 
+//function Navbar() {
+//  const { logoutUser, user } = useAuth();
+//  return (
+//    <nav>
+//      <span id="nom-site">GSB Frais</span>
+//      {/* Liens temporaires pour tester les routes */}
+//      <div id="nav-elements">
+//        <Link to="/">Accueil</Link>
+//        {user && (<Link to="/dashboard">Tableau de bord</Link>)}
+//      </div>
+//
+//        {user == null ? (
+//          <Link to="/login" id="login">Connexion</Link>
+//        ) : (
+//          <><p id="user-name">{user.nom_visiteur}</p> <button onClick={logoutUser} id="logout"> Déconnexion</button></>
+//        )}
+//    </nav>
+//  );
+//}
+
 function Navbar() {
   const { logoutUser, user } = useAuth();
   return (
@@ -10,14 +30,9 @@ function Navbar() {
       {/* Liens temporaires pour tester les routes */}
       <div id="nav-elements">
         <Link to="/">Accueil</Link>
-        {user && (<Link to="/dashboard">Tableau de bord</Link>)}
+        <Link to="/dashboard">Tableau de bord</Link>
       </div>
-
-        {user == null ? (
-          <Link to="/login" id="login">Connexion</Link>
-        ) : (
-          <><p id="user-name">{user.nom_visiteur}</p> <button onClick={logoutUser} id="logout"> Déconnexion</button></>
-        )}
+        <><p id="user-name">Andre</p> <button onClick={logoutUser} id="logout"> Déconnexion</button></>
     </nav>
   );
 }

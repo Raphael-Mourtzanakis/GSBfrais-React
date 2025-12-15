@@ -85,6 +85,21 @@ function FraisTable() {
               </td>
             </tr>
           ))}
+		  <tr key="1">
+              <td>100</td>
+              <td>4</td>
+              <td>202512</td>
+              <td>2</td>
+              <td>15</td>
+              <td>15/12/2025</td>
+              <td></td>
+              <td>500 €</td>
+              <td> 
+                <button onClick={() => navigate(`/frais/modifier/100`)} className="edit-button" > 
+                  Modifier
+                </button> 
+              </td>
+            </tr>
         </tbody>
       </table>
 
