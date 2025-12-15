@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { getCurrentUser } from '../services/authService';
 import axios from 'axios';
 
-function FraisForm({type, unFrais}) {
+function FraisForm({unFrais}) {
     const [idFrais, setIdFrais] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -40,7 +40,7 @@ function FraisForm({type, unFrais}) {
 			if (unFrais) { // Mise à jour d'un frais existant (UPDATE)
 				unFraisData["id_frais"] = idFrais; // ajoute id_frais au JSON unFraisData
 				unFraisData["montantvalide"] = parseFloat(montant);
-				// TODO : compléter la requête
+				//unFraisData["id_etat"] = parseInt(idEtat); // Si il y avait l'ID de l'état dans la requête
 				const response = await axios.post(
 					`${API_URL}frais/modif`, 
 					unFraisData, 
@@ -67,7 +67,7 @@ function FraisForm({type, unFrais}) {
 
     return (
         <div className="frais-form-container">
-        <h2>Saisissez le frais</h2>
+        <h2>Saisissez les valeurs</h2>
         <form onSubmit={handleSubmit}>
             <div className="form-container">
                 <label>
@@ -102,7 +102,7 @@ function FraisForm({type, unFrais}) {
                 </label>
 
                 <button type="submit" disabled={loading}>
-                    {loading ? 'Enregistement...' : type}
+                    {loading ? 'Enregistement...' : (unFrais ? "Modifier" : "Ajouter")}
                 </button>
             </div>
         </form>

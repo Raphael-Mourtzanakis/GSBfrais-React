@@ -11,27 +11,28 @@ function FraisEdit() {
   const { user, token } = useAuth();
   const [loading, setLoading] = useState(true);
   const [unFrais, setUnFrais] = useState(null);
-  useEffect(() => { 
-	const fetchFrais = async () => {
-		try { 
-			const token = localStorage.getItem('token'); 
-			const response = await axios.get(`${API_URL}frais/${id}`, { headers: { Authorization: `Bearer ${token}` }, }); 
-			setUnFrais(response.data); 
-		} catch (error) { 
-			console.error('Erreur:', error); 
-		} finally { 
-			setLoading(false); 
-		} 
-	};
-	fetchFrais();
-  }, [id]);
+
+	useEffect(() => { 
+		const fetchFrais = async () => {
+			try { 
+				const token = localStorage.getItem('token'); 
+				const response = await axios.get(`${API_URL}frais/${id}`, { headers: { Authorization: `Bearer ${token}` }, }); 
+				setUnFrais(response.data); 
+			} catch (error) { 
+				console.error('Erreur:', error); 
+			} finally { 
+				setLoading(false); 
+			} 
+		};
+		fetchFrais();
+	}, [id]);
 
   if (loading) return <div className="frais-edit-page chargement">Chargement de la modification de frais...</div>;
 
   return (
     <div className="frais-edit-page">
       <h1 className="centered">Modification de frais</h1>
-      <FraisForm type="Modifier" unFrais={unFrais}/>
+      <FraisForm unFrais={unFrais}/>
     </div>
   );
 }
