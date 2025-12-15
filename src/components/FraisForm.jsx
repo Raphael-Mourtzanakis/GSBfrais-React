@@ -57,9 +57,9 @@ function FraisForm({unFrais}) {
 				console.log(response);
 			}
             navigate('/dashboard'); // Redirige vers /dashboard si succès
-        } catch(err) {
-            console.error('Erreur:', err);
-            setError(err.response?.data?.message || err.message || 'Erreur lors de l\'enregistrement');
+        } catch(error) {
+            console.error('Erreur:', error);
+            setError(error.response?.data?.message || error.message || 'Erreur lors de l\'enregistrement');
         } finally {
             setLoading(false);
         }

@@ -38,6 +38,28 @@ function FraisTable() {
     fetchFrais(); // Appelle la fonction pour récupérer les données 
   }, []); // Tableau de dépendances vide = exécute une seule fois
 
+  const handleDelete = async (id) => {
+	if (!window.confirm('Êtes-vous sûr de vouloir supprimer ce frais ?')) return;
+
+	try {
+		await axios.delete(
+			`${API_URL}frais/suppr`,
+			{
+				data: {id_frais: id},
+				headers: { 
+                	Authorization: `Bearer ${token}`, 
+            	}
+			}
+		);
+		// Met à jour FraisList en ignorant le frais supprimé
+		setFraisList(
+			fraisList.filter((frais) => frais.id_frais !== id)
+		);
+	} catch (error) {
+		console.error('Erreur lors de la suppression:', error);
+	}
+};
+
   if (loading) return <div className="frais-table-container chargement">Chargement des frais...</div>;
 
   // Logique de filtrage : filtre les frais en fonction du terme de recherche
@@ -78,28 +100,34 @@ function FraisTable() {
               <td>{element.datemodification}</td>
               <td></td>
               <td>{element.montantvalide} {element.montantvalide && "€"}</td>
-              <td> 
+              <td className="buttons-line"> 
                 <button onClick={() => navigate(`/frais/modifier/${element.id_frais}`)} className="edit-button" > 
                   Modifier
-                </button> 
+                </button>
+				<button onClick={() => handleDelete(element.id_frais)} className="delete-button" > 
+                  Supprimer
+                </button>
               </td>
             </tr>
           ))}
-		  <tr key="1">
-              <td>100</td>
-              <td>4</td>
-              <td>2025-12</td>
-              <td>2</td>
-              <td>15</td>
-              <td>15/12/2025</td>
-              <td></td>
-              <td>500 €</td>
-              <td> 
-                <button onClick={() => navigate(`/frais/modifier/100`)} className="edit-button" > 
-                  Modifier
-                </button> 
-              </td>
-            </tr>
+					<tr key="1">
+						<td>100</td>
+						<td>4</td>
+						<td>2025-12</td>
+						<td>2</td>
+						<td>15</td>
+						<td>15/12/2025</td>
+						<td></td>
+						<td>500 €</td>
+						<td className="buttons-line"> 
+							<button onClick={() => navigate(`/frais/modifier/100`)} className="edit-button" > 
+							Modifier
+							</button>
+							<button onClick={() => handleDelete(100)} className="delete-button" > 
+							Supprimer
+							</button> 
+						</td>
+						</tr>
         </tbody>
       </table>
 
