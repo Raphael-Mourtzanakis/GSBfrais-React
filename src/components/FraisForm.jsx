@@ -23,7 +23,8 @@ function FraisForm({type}) {
 		if (unFrais) { 
 			setIdFrais(unFrais.id_frais);
 			setMontant(unFrais.montantvalide || '');
-			// TODO : compléter en affectant la valeur à anneeMois et nbJustificatifs
+			setAnneeMois(unFrais.anneemois);
+			setNbJustificatifs(unFrais.nbjustificatifs);
 		} }, [unFrais]
 	);
 
