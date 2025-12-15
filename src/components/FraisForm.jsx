@@ -41,11 +41,19 @@ function FraisForm({type, unFrais}) {
 				unFraisData["id_frais"] = idFrais; // ajoute id_frais au JSON unFraisData
 				unFraisData["montantvalide"] = parseFloat(montant);
 				// TODO : compléter la requête
-				const response = await axios.post(`${API_URL}frais/modif`, unFraisData, { headers: { Authorization: `Bearer ${token}` }, });
+				const response = await axios.post(
+					`${API_URL}frais/modif`, 
+					unFraisData, 
+					{ headers: { Authorization: `Bearer ${token}` }, }
+				);
 				console.log(response);
 			} else { // Ajout d'un nouveau frais (CREATE)
-				unFraisData["id_visiteur" = getCurrentUser()["id_visiteur"]];
-				const response = await axios.post(`${API_URL}frais/ajout`, unFraisData, { headers: { Authorization: `Bearer ${token}` }, });
+				unFraisData["id_visiteur"] = getCurrentUser()["id_visiteur"];
+				const response = await axios.post(
+					`${API_URL}frais/ajout`,
+					unFraisData,
+					{ headers: { Authorization: `Bearer ${token}` }, }
+				);
 				console.log(response);
 			}
             navigate('/dashboard'); // Redirige vers /dashboard si succès
