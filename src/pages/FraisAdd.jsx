@@ -5,7 +5,7 @@ function FraisAdd() {
   return (
     <div className="frais-add-page">
       <h1 className="centered">Ajout de frais</h1>
-      <FraisForm type="Ajouter"/>
+      <FraisForm type="Ajouter" unFraisData={null}/>
     </div>
   );
 }

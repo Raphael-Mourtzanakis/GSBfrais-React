@@ -88,7 +88,7 @@ function FraisTable() {
 		  <tr key="1">
               <td>100</td>
               <td>4</td>
-              <td>202512</td>
+              <td>2025-12</td>
               <td>2</td>
               <td>15</td>
               <td>15/12/2025</td>

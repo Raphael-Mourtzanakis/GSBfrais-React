@@ -1,22 +1,21 @@
 import '../styles/FraisForm.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getCurrentUser } from '../services/authService';
 import axios from 'axios';
-import { useEffect } from 'react';
 
-function FraisForm({type}) {
+function FraisForm({type, unFraisData}) {
     const [idFrais, setIdFrais] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [anneeMois, setAnneeMois] = useState("");
     const [nbJustificatifs, setNbJustificatifs] = useState(0);
-	const [montant, setMontant] = useState(0);
+	const [montant, setMontant] = useState(null);
     const navigate = useNavigate();
     const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
     const {token} = useAuth();
-	const [unFrais, setUnFrais] = useState(null);
+	const [unFrais, setUnFrais] = useState(unFraisData);
 
 	// Pré-remplir le formulaire si on modifie un frais existant
 	useEffect(() => { 
