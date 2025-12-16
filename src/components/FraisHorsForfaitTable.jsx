@@ -51,12 +51,12 @@ function FraisHorsForfaitTable({id, fraisHorsForfaitList, totalSomme}) {
               <td>{element.date_fraishorsforfait}</td>
               <td>{element.lib_fraishorsforfait}</td>
               <td>{element.montant_fraishorsforfait}</td>
-              <td className="buttons-line"> {/*
+              <td className="buttons-line">
                 <button onClick={() => navigate(`/frais/${id}/hors-forfait/modifier/${element.id_fraishorsforfait}`)} className="edit-button" > 
-                  Modifier
-                </button>
+                	Modifier
+                </button>{/*
 				<button onClick={() => handleDelete(element.id_fraishorsforfait)} className="delete-button" > 
-                  Supprimer
+                	Supprimer
                 </button>
 			  	*/}
               </td>
@@ -68,12 +68,12 @@ function FraisHorsForfaitTable({id, fraisHorsForfaitList, totalSomme}) {
 						<td>16/12/2025</td>
 						<td>Nuit à l'hôtel</td>
 						<td>500 €</td>
-						<td className="buttons-line"> {/*
+						<td className="buttons-line">
 							<button onClick={() => navigate(`/frais/${id}/hors-forfait/modifier/1`)} className="edit-button" > 
-							Modifier
-							</button>
+								Modifier
+							</button>{/*
 							<button onClick={() => handleDelete(1)} className="delete-button" > 
-							Supprimer
+								Supprimer
 							</button>
 							*/}
 						</td>

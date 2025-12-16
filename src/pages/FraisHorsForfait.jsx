@@ -9,9 +9,9 @@ import { useState, useEffect } from 'react';
 
 function FraisHorsForfait() {
   const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
-  const { user, token } = useAuth();
+  const { token } = useAuth();
   const [fraisHorsForfaitList, setFraisHorsForfaitList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const [total, setTotal] = useState(parseFloat(0));
 
@@ -46,6 +46,8 @@ function FraisHorsForfait() {
     }; 
     fetchFraisHF(); // Appelle la fonction pour récupérer les données 
   }, []); // Tableau de dépendances vide = exécute une seule fois
+
+  if (loading) return <div className="frais-table-container chargement">Chargement des frais...</div>;
 
   return (
     <div className="frais-hors-forfait-page">

@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 function FraisEdit() {
   const { id } = useParams();
   const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
-  const { user, token } = useAuth();
+  const { token } = useAuth();
   const [loading, setLoading] = useState(true);
   const [unFrais, setUnFrais] = useState(null);
 

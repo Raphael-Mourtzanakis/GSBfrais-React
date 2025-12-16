@@ -29,7 +29,7 @@ function App() {
               <Route path="/frais/modifier/:id" element={<PrivateRoute> <FraisEdit/> </PrivateRoute>} />
 			  <Route path="/frais/:id/hors-forfait" element={<PrivateRoute> <FraisHorsForfait/> </PrivateRoute>} />
 			  <Route path="/frais/:id/hors-forfait/ajouter" element={<PrivateRoute> <FraisHorsForfaitAdd/> </PrivateRoute>} />
-			  <Route path="/frais/:id/hors-forfait/modifier/:id" element={<PrivateRoute> <FraisHorsForfaitEdit/> </PrivateRoute>} />
+			  <Route path="/frais/:id/hors-forfait/modifier/:id2" element={<PrivateRoute> <FraisHorsForfaitEdit/> </PrivateRoute>} />
             </Routes>
           </div>
         </AuthProvider>

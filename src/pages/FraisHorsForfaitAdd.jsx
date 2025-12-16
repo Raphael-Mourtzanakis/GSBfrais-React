@@ -1,6 +1,6 @@
 import '../styles/FraisAdd.css'
-import { useParams } from 'react-router-dom';
 import FraisHorsForfaitForm from '../components/FraisHorsForfaitForm'
+import { useParams } from 'react-router-dom';
 
 function FraisHorsForfaitAdd() {
 	const { id } = useParams();
