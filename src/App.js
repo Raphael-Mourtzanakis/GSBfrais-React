@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard'
 import FraisAdd from './pages/FraisAdd'
 import FraisEdit from './pages/FraisEdit'
 import FraisHorsForfait from './pages/FraisHorsForfait'
+import FraisHorsForfaitAdd from './pages/FraisHorsForfaitAdd'
+import FraisHorsForfaitEdit from './pages/FraisHorsForfaitEdit'
 import { AuthProvider } from './context/AuthContext'
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
               <Route path="/frais/ajouter" element={<PrivateRoute> <FraisAdd/> </PrivateRoute>} />
               <Route path="/frais/modifier/:id" element={<PrivateRoute> <FraisEdit/> </PrivateRoute>} />
 			  <Route path="/frais/:id/hors-forfait" element={<PrivateRoute> <FraisHorsForfait/> </PrivateRoute>} />
+			  <Route path="/frais/:id/hors-forfait/ajouter" element={<PrivateRoute> <FraisHorsForfaitAdd/> </PrivateRoute>} />
+			  <Route path="/frais/:id/hors-forfait/modifier/:id" element={<PrivateRoute> <FraisHorsForfaitEdit/> </PrivateRoute>} />
             </Routes>
           </div>
         </AuthProvider>

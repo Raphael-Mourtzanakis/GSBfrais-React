@@ -1,12 +1,15 @@
 import '../styles/FraisAdd.css'
+import { useParams } from 'react-router-dom';
 import FraisHorsForfaitForm from '../components/FraisHorsForfaitForm'
 
 function FraisHorsForfaitEdit() {
-  return (
-    <div className="frais-hors-forfait-edit-page">
+	const { id } = useParams();	
 
-    </div>
-  );
+	//return (
+	//	<div className="frais-hors-forfait-edit-page">
+	//		<FraisHorsForfaitForm idFrais={id} unFraisHorsForfait={{unFraisHorsForfait}}/>
+	//	</div>
+	//);
 }
 
 export default FraisHorsForfaitEdit;
