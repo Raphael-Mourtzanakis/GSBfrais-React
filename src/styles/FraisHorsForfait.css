@@ -77,3 +77,7 @@ button:hover {
   font-weight: bold;
   margin-top: 10px;
 }
+
+.add-frais-hors-frais-button {
+  width: 205px;
+}

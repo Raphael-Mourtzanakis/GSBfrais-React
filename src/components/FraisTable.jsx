@@ -51,14 +51,14 @@ function FraisTable() {
             	}
 			}
 		);
-		// Met à jour FraisList en ignorant le frais supprimé
+		// Met à jour fraisList en ignorant le frais supprimé
 		setFraisList(
 			fraisList.filter((frais) => frais.id_frais !== id)
 		);
 	} catch (error) {
 		console.error('Erreur lors de la suppression:', error);
 	}
-};
+  };
 
   if (loading) return <div className="frais-table-container chargement">Chargement des frais...</div>;
 

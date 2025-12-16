@@ -29,14 +29,7 @@ function FraisForm({unFrais}) {
 		} }, [unFrais]
 	);
 
-			unFrais = true;
-			useEffect(() => { // Simuler le fait qu'on modifie
-				setIdFrais(100);
-				setMontant(500);
-				setAnneeMois("2025-12");
-				setNbJustificatifs(15);
-				setIdEtat(4);
-			});
+				unFrais = true; useEffect(() => { setIdFrais(100); }); // Simuler le fait qu'on modifie
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Empêche le rechargement de la page
