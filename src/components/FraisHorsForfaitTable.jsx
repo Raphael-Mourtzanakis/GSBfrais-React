@@ -1,32 +1,9 @@
 import '../styles/FraisTable.css'
 import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import { useState } from 'react';
 
-function FraisHorsForfaitTable({id, fraisHorsForfaitList, totalSomme}) {
+function FraisHorsForfaitTable({id, fraisHorsForfaitList, totalSomme, handleDelete}) {
   const navigate = useNavigate();
-
-//const handleDelete = async (idFraisHF) => {
-//	if (!window.confirm('Êtes-vous sûr de vouloir supprimer cette note de frais ?')) return;
-//
-//	try {
-//		await axios.delete(
-//			`${API_URL}fraisHF/suppr`,
-//			{
-//				data: {id_fraishorsforfait: idFraisHF},
-//				headers: { 
-//              	Authorization: `Bearer ${token}`, 
-//          	}
-//			}
-//		);
-//		// Met à jour fraisHorsForfaitList en ignorant le frais supprimé
-//		setFraisHorsForfaitList(
-//			fraisHorsForfaitList.filter((fraisHF) => fraisHF.id_fraishorsforfait !== idFraisHF)
-//		);
-//	} catch (error) {
-//		console.error('Erreur lors de la suppression:', error);
-//	}
-//};
 
   return (
     <div className="frais-hors-forfait-table-container">
@@ -54,11 +31,10 @@ function FraisHorsForfaitTable({id, fraisHorsForfaitList, totalSomme}) {
               <td className="buttons-line">
                 <button onClick={() => navigate(`/frais/${id}/hors-forfait/modifier/${element.id_fraishorsforfait}`)} className="edit-button" > 
                 	Modifier
-                </button>{/*
+                </button>
 				<button onClick={() => handleDelete(element.id_fraishorsforfait)} className="delete-button" > 
                 	Supprimer
                 </button>
-			  	*/}
               </td>
             </tr>
           ))}
@@ -71,11 +47,10 @@ function FraisHorsForfaitTable({id, fraisHorsForfaitList, totalSomme}) {
 						<td className="buttons-line">
 							<button onClick={() => navigate(`/frais/${id}/hors-forfait/modifier/1`)} className="edit-button" > 
 								Modifier
-							</button>{/*
+							</button>
 							<button onClick={() => handleDelete(1)} className="delete-button" > 
 								Supprimer
 							</button>
-							*/}
 						</td>
 					</tr>
         </tbody>

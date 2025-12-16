@@ -2,7 +2,6 @@ import '../styles/FraisTable.css'
 import '../styles/FraisHorsForfait.css'
 import FraisHorsForfaitTable from '../components/FraisHorsForfaitTable'
 import { useParams } from 'react-router-dom';
-import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useState, useEffect } from 'react';
@@ -14,6 +13,28 @@ function FraisHorsForfait() {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const [total, setTotal] = useState(parseFloat(0));
+
+  const handleDelete = async (idFraisHF) => {
+  	if (!window.confirm('Êtes-vous sûr de vouloir supprimer cette note de frais ?')) return;
+  
+  	try {
+  		await axios.delete(
+  			`${API_URL}fraisHF/suppr`,
+  			{
+  				data: {id_fraishorsforfait: idFraisHF},
+  				headers: { 
+                	Authorization: `Bearer ${token}`, 
+            	}
+  			}
+  		);
+  		// Met à jour fraisHorsForfaitList en ignorant le frais supprimé
+  		setFraisHorsForfaitList(
+  			fraisHorsForfaitList.filter((fraisHF) => fraisHF.id_fraishorsforfait !== idFraisHF)
+  		);
+  	} catch (error) {
+  		console.error('Erreur lors de la suppression:', error);
+  	}
+  };
 
   useEffect(() => { 
     const fetchFraisHF = async () => { 
@@ -51,7 +72,7 @@ function FraisHorsForfait() {
 
   return (
     <div className="frais-hors-forfait-page">
-		<FraisHorsForfaitTable id={id} fraisHorsForfaitList={fraisHorsForfaitList} totalSomme={total} />
+		<FraisHorsForfaitTable id={id} fraisHorsForfaitList={fraisHorsForfaitList} totalSomme={total} handleDelete={handleDelete} />
     </div>
   );
 }
