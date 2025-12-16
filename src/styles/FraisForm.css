@@ -86,7 +86,7 @@ input[type="number"]
   {
     height: 1.75rem;
     padding: 3px;
-    border:gray solid 0.1rem;
+    border:gray solid 0.05rem;
     border-radius: 5px;
     font-size: 18px;
   }
@@ -168,8 +168,8 @@ label
 .disabled-button, .disabled-button:hover, .disabled-button:active
 	{
 		padding: 9px;
-		background-color: #d0d0d0;
-		color: #5b5b5b;
+		background-color: #e1e1e1;
+		color: #696969;
 		border-radius: 5px;
 		margin-top: 15px;
 		font-size: 17px;
@@ -184,16 +184,16 @@ select
 	{
 		height: 1.9rem;
 		padding: 2px;
-		border:rgb(179, 179, 179) solid 2px;
+		border:rgb(175, 175, 175) solid 2px;
 		border-radius: 5px;
 		font-size: 17px;
-		color: rgb(30, 30, 30);
+		cursor: pointer;
 	}
 
 select:disabled
 	{
 		background-color: #f0f0f0;
-		border:rgb(209, 209, 209) solid 2px;
-		color: rgb(75, 75, 75);
+		border:rgb(200, 200, 200) solid 2px;
+		color: rgb(40, 40, 40);
 		cursor: not-allowed;
 	}

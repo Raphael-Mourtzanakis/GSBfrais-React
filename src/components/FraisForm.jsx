@@ -18,8 +18,6 @@ function FraisForm({unFrais}) {
     const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
     const {token} = useAuth();
 
-	unFrais = true; useEffect(() => { setIdFrais(100) }); // temporaire (simuler le fait qu'on modifie)
-
 	// Pré-remplir le formulaire si on modifie un frais existant
 	useEffect(() => { 
 		if (unFrais) { 
@@ -27,8 +25,18 @@ function FraisForm({unFrais}) {
 			setMontant(unFrais.montantvalide || '');
 			setAnneeMois(unFrais.anneemois);
 			setNbJustificatifs(unFrais.nbjustificatifs);
+			setIdEtat(unFrais.id_etat);
 		} }, [unFrais]
 	);
+
+			unFrais = true;
+			useEffect(() => { // Simuler le fait qu'on modifie
+				setIdFrais(100);
+				setMontant(500);
+				setAnneeMois("2025-12");
+				setNbJustificatifs(15);
+				setIdEtat(4);
+			});
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Empêche le rechargement de la page
@@ -100,11 +108,11 @@ function FraisForm({unFrais}) {
                     <legend>État :</legend>
 					{unFrais ? // Modification
 						(
-							<select onChange={(e) => {if (e.target.value >= 0 && e.target.value <= 4) setIdEtat(parseInt(e.target.value))}}>
-								<option value="1" {...idEtat == 1 && "selected"}>Saisie clôturée</option>
-								<option value="2" {...!(idEtat >= 1 && idEtat <= 4) && "selected"}>Fiche créée, saisie en cours</option>
-								<option value="3" {...idEtat == 3 && "selected"}>Remboursée</option>
-								<option value="4" {...idEtat == 4 && "selected"}>Validée et mise en paiement</option>
+							<select required onChange={(e) => {if (e.target.value >= 1 && e.target.value <= 4) setIdEtat(parseInt(e.target.value))}}>
+								{idEtat == 1 ? 									(<option value="1" selected> Saisie clôturée </option>) 				: (<option value="1"> Saisie clôturée </option>)}
+								{(idEtat != 1 && idEtat != 3 && idEtat != 4) ?	(<option value="2" selected> Fiche créée, saisie en cours </option>) 	: (<option value="2"> Fiche créée, saisie en cours </option>)}
+								{idEtat == 3 ? 									(<option value="3" selected> Remboursée </option>) 						: (<option value="3"> Remboursée </option>)}
+								{idEtat == 4 ? 									(<option value="4" selected> Validée et mise en paiement </option>) 	: (<option value="4"> Validée et mise en paiement </option>)}
 							</select>
 						) : // Ajout
 						(
