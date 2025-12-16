@@ -1,14 +1,10 @@
 import '../styles/FraisTable.css'
 import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import axios from 'axios';
 import { useState } from 'react';
 
-function FraisHorsForfaitTable({id, fraisHorsForfaitList}) {
+function FraisHorsForfaitTable({id, fraisHorsForfaitList, totalSomme}) {
   const navigate = useNavigate();
-  const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
-  const { user, token } = useAuth();
 
 //const handleDelete = async (idFraisHF) => {
 //	if (!window.confirm('Êtes-vous sûr de vouloir supprimer cette note de frais ?')) return;
@@ -86,6 +82,8 @@ function FraisHorsForfaitTable({id, fraisHorsForfaitList}) {
       </table>
 
 	  <Link to={`/frais/${id}/hors-forfait/ajouter`} className="add-button add-frais-hors-frais-button">Ajouter une note de frais</Link>
+
+	  <div className="total">Total : <span className="total-nombre">{totalSomme}</span> €</div>
     </div>
   );
 }

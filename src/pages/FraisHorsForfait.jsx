@@ -13,13 +13,14 @@ function FraisHorsForfait() {
   const [fraisHorsForfaitList, setFraisHorsForfaitList] = useState([]);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const [total, setTotal] = useState(parseFloat(0));
 
   useEffect(() => { 
     const fetchFraisHF = async () => { 
       try {
-        // Requête get à l'API à l'url 'http://gsb.julliand.etu.lmdsio.com/api/frais/liste/{id_visiteur}
+        // Requête get à l'API à l'url 'http://gsb.julliand.etu.lmdsio.com/api/fraisHF/liste/{id}
           const response = await axios.get(
-            `${API_URL}frais/liste/${user.id_visiteur}`,
+            `${API_URL}fraisHF/liste/${id}`,
             { 
               headers: { 
                 Authorization: `Bearer ${token}`, 
@@ -27,6 +28,16 @@ function FraisHorsForfait() {
             }
           );
         setFraisHorsForfaitList(response.data); // Met à jour l'état avec les données de l'API
+		
+		// Calcul du total des frais hors forfait
+		let somme = 0;
+		response.data.forEach(
+			(fraisHorsForfaitList) => {
+				somme += parseFloat(fraisHorsForfaitList.montant_fraishorsforfait); 
+			}
+		);
+		setTotal(somme);
+
         setLoading(false); // Arrête le chargement
       } catch (error) {
           console.error('Erreur lors de la récupération des frais :', error);
@@ -38,7 +49,7 @@ function FraisHorsForfait() {
 
   return (
     <div className="frais-hors-forfait-page">
-		<FraisHorsForfaitTable id={id} fraisHorsForfaitList={fraisHorsForfaitList}/>
+		<FraisHorsForfaitTable id={id} fraisHorsForfaitList={fraisHorsForfaitList} totalSomme={total} />
     </div>
   );
 }

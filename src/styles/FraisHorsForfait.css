@@ -72,11 +72,18 @@ button:hover {
   background-color: #ddd; /* Couleur au survol */
 }
 
-.total {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-top: 10px;
-}
+.total 
+	{
+		font-size: 1.2em;
+		font-weight: bold;
+		margin-top: 10px;
+		display: block;
+	}
+
+.total-nombre
+	{
+		color: rgb(50, 50, 50);
+	}
 
 .add-frais-hors-frais-button {
   width: 205px;
