@@ -63,7 +63,6 @@ button[type="submit"]:disabled {
   text-align: center;
 }
 
-
 input[type="text"]
   {
     height: 2rem;
@@ -96,10 +95,11 @@ input[type="number"]:disabled
   {
     height: 1.75rem;
     padding: 3px;
-    border:rgb(180, 180, 180) solid 0.05rem;
+    border:rgb(205, 205, 205) solid 0.05rem;
     border-radius: 5px;
     font-size: 18px;
     color: rgb(100, 100, 100);
+	background-color: #f7f7f7;
     cursor: not-allowed
   }
 
@@ -122,3 +122,78 @@ label
     display: grid;
     gap: 5px;
   }
+
+.frais-hors-forfait-button, .frais-au-forfait-button {
+  padding: 9px;
+  background-color: #00c8ff;
+  color: #004255;
+  border-radius: 5px;
+  margin-top: 15px;
+  font-size: 17px;
+  transition: 0.25s ease;
+  text-decoration: none;
+  display: block;
+}
+
+.frais-hors-forfait-button 
+	{
+		width: 140px;
+	}
+.frais-au-forfait-button 
+	{
+		width: 125px;
+	}
+
+.frais-hors-forfait-button:hover, .frais-au-forfait-button:hover
+	{
+	background-color: #00e1ff;
+	color: #006379;
+	transition: 0.25s ease;
+	}
+
+.frais-hors-forfait-button:active, .frais-au-forfait-button:active
+	{
+	background-color: #00a2ff;
+	color: #00272f;
+	scale: 95% 93%;
+	transition: 0.15s ease;
+	}
+
+.frais-forfait-buttons
+	{
+		display: flex;
+		gap: 8px;
+	}
+
+.disabled-button, .disabled-button:hover, .disabled-button:active
+	{
+		padding: 9px;
+		background-color: #d0d0d0;
+		color: #5b5b5b;
+		border-radius: 5px;
+		margin-top: 15px;
+		font-size: 17px;
+		transition: 0.25s ease;
+		text-decoration: none;
+		scale: 100%;
+		display: block;
+		cursor: not-allowed;
+	}
+
+select
+	{
+		height: 1.9rem;
+		padding: 2px;
+		border:rgb(179, 179, 179) solid 2px;
+		border-radius: 5px;
+		font-size: 17px;
+		color: rgb(30, 30, 30);
+	}
+
+select:disabled
+	{
+		background-color: #f0f0f0;
+		border:rgb(209, 209, 209) solid 2px;
+		color: rgb(75, 75, 75);
+		cursor: not-allowed;
+	}

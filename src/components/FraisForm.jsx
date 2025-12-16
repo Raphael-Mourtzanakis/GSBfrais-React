@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getCurrentUser } from '../services/authService';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 function FraisForm({unFrais}) {
     const [idFrais, setIdFrais] = useState(null);
@@ -12,9 +13,12 @@ function FraisForm({unFrais}) {
     const [anneeMois, setAnneeMois] = useState("");
     const [nbJustificatifs, setNbJustificatifs] = useState(parseInt(0));
 	const [montant, setMontant] = useState(null);
+	const [idEtat, setIdEtat] = useState(parseInt(2));
     const navigate = useNavigate();
     const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
     const {token} = useAuth();
+
+	unFrais = true; useEffect(() => { setIdFrais(100) }); // temporaire (simuler le fait qu'on modifie)
 
 	// Pré-remplir le formulaire si on modifie un frais existant
 	useEffect(() => { 
@@ -40,7 +44,7 @@ function FraisForm({unFrais}) {
 			if (unFrais) { // Mise à jour d'un frais existant (UPDATE)
 				unFraisData["id_frais"] = idFrais; // ajoute id_frais au JSON unFraisData
 				unFraisData["montantvalide"] = parseFloat(montant);
-				//unFraisData["id_etat"] = parseInt(idEtat); // Si il y avait l'ID de l'état dans la requête
+				unFraisData["id_etat"] = parseInt(idEtat);
 				const response = await axios.post(
 					`${API_URL}frais/modif`, 
 					unFraisData, 
@@ -92,6 +96,25 @@ function FraisForm({unFrais}) {
                     />
                 </label>
 
+				<label>
+                    <legend>État :</legend>
+					{unFrais ? // Modification
+						(
+							<select onChange={(e) => {if (e.target.value >= 0 && e.target.value <= 4) setIdEtat(parseInt(e.target.value))}}>
+								<option value="1" {...idEtat == 1 && "selected"}>Saisie clôturée</option>
+								<option value="2" {...!(idEtat >= 1 && idEtat <= 4) && "selected"}>Fiche créée, saisie en cours</option>
+								<option value="3" {...idEtat == 3 && "selected"}>Remboursée</option>
+								<option value="4" {...idEtat == 4 && "selected"}>Validée et mise en paiement</option>
+							</select>
+						) : // Ajout
+						(
+							<select disabled>
+								<option>Fiche créée, saisie en cours</option>
+							</select>
+						)
+					}
+                </label>
+
                 <label>
                     <legend>Montant :</legend>
                     <input
@@ -100,6 +123,21 @@ function FraisForm({unFrais}) {
 						value={montant}
                     /> €
                 </label>
+
+				{unFrais ? // Modification
+					(
+						<div className="frais-forfait-buttons">
+							<Link className="frais-hors-forfait-button" to={`/frais/${idFrais}/hors-forfait`}>Frais hors forfait</Link>
+							<Link className="frais-au-forfait-button" to={`/frais/${idFrais}/au-forfait`}>Frais au forfait</Link>
+						</div>
+					) : // Ajout
+					(
+						<div className="frais-forfait-buttons">
+							<span className="frais-hors-forfait-button disabled-button">Frais hors forfait</span>
+							<span className="frais-au-forfait-button disabled-button">Frais au forfait</span>
+						</div>
+					)
+				}
 
                 <button type="submit" disabled={loading}>
                     {loading ? 'Enregistement...' : (unFrais ? "Modifier" : "Ajouter")}
