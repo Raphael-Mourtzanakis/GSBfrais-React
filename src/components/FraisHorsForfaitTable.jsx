@@ -81,7 +81,10 @@ function FraisHorsForfaitTable({id, fraisHorsForfaitList, totalSomme}) {
         </tbody>
       </table>
 
+	<div className="buttons-bottom">
 	  <Link to={`/frais/${id}/hors-forfait/ajouter`} className="add-button add-frais-hors-frais-button">Ajouter une note de frais</Link>
+	  <Link to={`/frais/modifier/${id}`} className="back-button">Retour</Link>
+	</div>
 
 	  <div className="total">Total : <span className="total-nombre">{totalSomme}</span> €</div>
     </div>

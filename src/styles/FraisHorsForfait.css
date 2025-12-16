@@ -86,5 +86,59 @@ button:hover {
 	}
 
 .add-frais-hors-frais-button {
+  padding: 9px;
+  background-color: #0084ff;
+  color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 17px;
+  transition: 0.25s ease;
+  text-decoration: none;
+  display: block;
   width: 205px;
 }
+
+.add-frais-hors-frais-button:hover {
+  background-color: #329cff;
+  transition: 0.25s ease;
+}
+
+.add-frais-hors-frais-button:active {
+  background-color: #0057a8;
+  scale: 95% 93%;
+  transition: 0.15s ease;
+}
+
+.back-button 
+  { 
+	padding: 9px;
+    background-color: #5b5f63;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 17px;
+    transition: 0.25s ease;
+    text-decoration: none;
+    display: block;
+    width: 67px;
+  }
+
+.back-button:hover
+  {
+    background-color: #797e83;
+    transition: 0.25s ease;
+  }
+
+.back-button:active
+  {
+    background-color: #393c3e;
+    scale: 95% 93%;
+    transition: 0.15s ease;
+  }
+
+.buttons-bottom
+  {
+	display: flex;
+	gap: 8px;
+	margin-top: 5px;
+  }
