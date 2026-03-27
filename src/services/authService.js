@@ -2,20 +2,21 @@
 import axios from 'axios';
 
 // URL de l'API
-const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
+//export const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
+export const API_URL = 'http://localhost:8000/api/';
 
 export const signIn = async (login, password) => { 
-    const response = await axios.post(`${API_URL}visiteur/login`, {login: login, password: password }); 
-    if (response.data.access_token) { 
+    const response = await axios.post(`${API_URL}Visiteur/authentifier`, {login: login, password: password }); 
+    if (response.data.token) { 
         localStorage.setItem('user', JSON.stringify(response.data.visiteur)); 
-        localStorage.setItem('token', response.data.access_token); 
+        localStorage.setItem('token', response.data.token); 
     }
     return response.data; 
 };
 
 export const signOut = () => { 
     localStorage.removeItem('user'); 
-    localStorage.removeItem('token'); 
+    localStorage.removeItem('token');
 };
 
 export const getCurrentUser = () => {

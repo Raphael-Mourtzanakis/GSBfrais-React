@@ -4,9 +4,9 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
+import {API_URL} from '../services/authService';
 
 function FraisTable() {
-  const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
   const { user, token } = useAuth();
   const [fraisList, setFraisList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,10 +21,10 @@ function FraisTable() {
       try {
         // Requête get à l'API à l'url 'http://gsb.julliand.etu.lmdsio.com/api/frais/liste/{id_visiteur}
           const response = await axios.get(
-            `${API_URL}frais/liste/${user.id_visiteur}`,
+            `${API_URL}Frais/lister/${user.id_visiteur}`,
             { 
               headers: { 
-                Authorization: `Bearer ${token}`, 
+                Authorization: `Bearer ${token}`,
               },
             }
           );
@@ -39,37 +39,37 @@ function FraisTable() {
   }, []); // Tableau de dépendances vide = exécute une seule fois
 
   const handleDelete = async (id) => {
-	if (!window.confirm('Êtes-vous sûr de vouloir supprimer ce frais ?')) return;
+    if (!window.confirm('Êtes-vous sûr de vouloir supprimer ce frais ?')) return;
 
-	try {
-		await axios.delete(
-			`${API_URL}frais/suppr`,
-			{
-				data: {id_frais: id},
-				headers: { 
-                	Authorization: `Bearer ${token}`, 
-            	}
-			}
-		);
-		// Met à jour fraisList en ignorant le frais supprimé
-		setFraisList(
-			fraisList.filter((frais) => frais.id_frais !== id)
-		);
-	} catch (error) {
-		console.error('Erreur lors de la suppression:', error);
-	}
+    try {
+      await axios.delete(
+        `${API_URL}Frais/supprimer`,
+        {
+          data: {id_frais: id},
+          headers: { 
+                    Authorization: `Bearer ${token}`, 
+                }
+        }
+      );
+      // Met à jour fraisList en ignorant le frais supprimé
+      setFraisList(
+        fraisList.filter((frais) => frais.id_frais !== id)
+      );
+    } catch (error) {
+      console.error('Erreur lors de la suppression:', error);
+    }
   };
 
   if (loading) return <div className="frais-table-container chargement">Chargement des frais...</div>;
 
   // Logique de filtrage : filtre les frais en fonction du terme de recherche
   const filteredFrais = fraisList
-    .filter((frais) => (filterMontantValideMin && (frais.montantvalide > montantValideMin)) || !filterMontantValideMin) // Afficher les frais avec montantvalide supérieur
+    .filter((frais) => (filterMontantValideMin && (frais.montantvalide > montantValideMin)) || !filterMontantValideMin) // Afficher les frais avec montantvalide supérieur au minimum
     .filter((frais) => (filterMontantValideNonNull && !frais.montantvalide) || frais.montantvalide) // Afficher les frais avec montantvalide = null
     .filter((frais) =>
-    frais.anneemois.includes(searchTerm) ||
-    frais.id_visiteur.toString().includes(searchTerm)
-  );
+      frais.anneemois.includes(searchTerm) ||
+      frais.id_visiteur.toString().includes(searchTerm)
+    );
 
   return (
     <div className="frais-table-container">
@@ -104,30 +104,12 @@ function FraisTable() {
                 <button onClick={() => navigate(`/frais/modifier/${element.id_frais}`)} className="edit-button" > 
                   Modifier
                 </button>
-				<button onClick={() => handleDelete(element.id_frais)} className="delete-button" > 
+				        <button onClick={() => handleDelete(element.id_frais)} className="delete-button" > 
                   Supprimer
                 </button>
               </td>
             </tr>
           ))}
-					<tr key="1">
-						<td>100</td>
-						<td>4</td>
-						<td>2025-12</td>
-						<td>2</td>
-						<td>15</td>
-						<td>15/12/2025</td>
-						<td></td>
-						<td>500 €</td>
-						<td className="buttons-line"> 
-							<button onClick={() => navigate(`/frais/modifier/100`)} className="edit-button" > 
-							Modifier
-							</button>
-							<button onClick={() => handleDelete(100)} className="delete-button" > 
-							Supprimer
-							</button> 
-						</td>
-						</tr>
         </tbody>
       </table>
 
