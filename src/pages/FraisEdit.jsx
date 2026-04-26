@@ -4,10 +4,10 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useEffect, useState } from 'react';
+import {API_URL} from '../services/authService';
 
 function FraisEdit() {
   const { id } = useParams();
-  const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
   const { token } = useAuth();
   const [loading, setLoading] = useState(true);
   const [unFrais, setUnFrais] = useState(null);

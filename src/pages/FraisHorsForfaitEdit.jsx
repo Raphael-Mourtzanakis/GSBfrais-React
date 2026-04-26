@@ -4,10 +4,10 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useEffect, useState } from 'react';
+import {API_URL} from '../services/authService';
 
 function FraisHorsForfaitEdit() {
 	const { id, id2 } = useParams(); // id = id du frais | id2 = id du frais hors forfait
-	const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
 	const { token } = useAuth();
 	const [loading, setLoading] = useState(true);
 	const [unFraisHorsForfait, setUnFraisHorsForfait] = useState(null);

@@ -19,7 +19,7 @@ function FraisTable() {
   useEffect(() => { 
     const fetchFrais = async () => { 
       try {
-        // Requête get à l'API à l'url 'http://gsb.julliand.etu.lmdsio.com/api/frais/liste/{id_visiteur}
+        // Requête get à l'API avec l'URL : http://localhost:8000/api/Frais/lister/{id_visiteur}
           const response = await axios.get(
             `${API_URL}Frais/lister/${user.id_visiteur}`,
             { 
@@ -28,7 +28,7 @@ function FraisTable() {
               },
             }
           );
-        setFraisList(response.data); // Met à jour l'état avec les données de l'API
+        setFraisList(response.data.data); // Met à jour l'état avec les données de l'API
         setLoading(false); // Arrête le chargement
       } catch (error) {
           console.error('Erreur lors de la récupération des frais :', error);
@@ -45,7 +45,7 @@ function FraisTable() {
       await axios.delete(
         `${API_URL}Frais/supprimer`,
         {
-          data: {id_frais: id},
+          data: {data: {id_frais: id}},
           headers: { 
                     Authorization: `Bearer ${token}`, 
                 }

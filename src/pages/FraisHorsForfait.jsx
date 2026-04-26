@@ -5,9 +5,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useState, useEffect } from 'react';
+import {API_URL} from '../services/authService';
 
 function FraisHorsForfait() {
-  const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
   const { token } = useAuth();
   const [fraisHorsForfaitList, setFraisHorsForfaitList] = useState([]);
   const [loading, setLoading] = useState(true);

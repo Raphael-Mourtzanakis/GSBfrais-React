@@ -2,7 +2,7 @@ import '../styles/FraisForm.css'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getCurrentUser } from '../services/authService';
+import { getCurrentUser, API_URL } from '../services/authService';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
@@ -14,7 +14,6 @@ function FraisHorsForfaitForm({idFrais, unFraisHorsForfait}) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate();
-    const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
     const {token} = useAuth();
 
 	// Pré-remplir le formulaire si on modifie un frais existant
