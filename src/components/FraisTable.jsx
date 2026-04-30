@@ -44,12 +44,8 @@ function FraisTable() {
     try {
       await axios.delete(
         `${API_URL}Frais/supprimer`,
-        {
-          data: {data: {id_frais: id}},
-          headers: { 
-                    Authorization: `Bearer ${token}`, 
-                }
-        }
+        { id_frais: id, id_visiteur: user.id_visiteur },
+        { headers: { Authorization: `Bearer ${token}` }, }
       );
       // Met à jour fraisList en ignorant le frais supprimé
       setFraisList(
@@ -73,47 +69,7 @@ function FraisTable() {
 
   return (
     <div className="frais-table-container">
-      <h2>Liste des Frais</h2>
-
-      <table className="frais-table">
-        <thead>
-          <tr>
-            <th>ID Frais</th>
-            <th>ID État</th>
-            <th>Année-Mois</th>
-            <th>ID Visiteur</th>
-            <th>Nombre de justificatifs</th>
-            <th>Date de modification</th>
-            <th>Montant saisi</th>
-            <th>Montant validé</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredFrais.map((element, index) => (
-            <tr key={element.id}>
-              <td>{element.id_frais}</td>
-              <td>{element.id_etat}</td>
-              <td>{element.anneemois}</td>
-              <td>{element.id_visiteur}</td>
-              <td>{element.nbjustificatifs}</td>
-              <td>{element.datemodification}</td>
-              <td></td>
-              <td>{element.montantvalide} {element.montantvalide && "€"}</td>
-              <td className="buttons-line"> 
-                <button onClick={() => navigate(`/frais/modifier/${element.id_frais}`)} className="edit-button" > 
-                  Modifier
-                </button>
-				        <button onClick={() => handleDelete(element.id_frais)} className="delete-button" > 
-                  Supprimer
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <Link to="/frais/ajouter" className="add-button">Ajouter un frais</Link>
+      <h2 className="centered">Liste des Frais</h2>
 
       <div className="filtrage">
         {/* Case à cocher pour afficher/cacher les frais avec montant non validé */}
@@ -164,6 +120,46 @@ function FraisTable() {
             </label>
         </div>
       </div>
+
+      <Link to="/frais/ajouter" className="add-button">Ajouter un frais</Link>
+
+      <table className="frais-table">
+        <thead>
+          <tr>
+            <th>ID Frais</th>
+            <th>ID État</th>
+            <th>Année-Mois</th>
+            <th>ID Visiteur</th>
+            <th>Nombre de justificatifs</th>
+            <th>Date de modification</th>
+            <th>Montant saisi</th>
+            <th>Montant validé</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredFrais.map((element, index) => (
+            <tr key={element.id}>
+              <td>{element.id_frais}</td>
+              <td>{element.id_etat}</td>
+              <td>{element.anneemois}</td>
+              <td>{element.id_visiteur}</td>
+              <td>{element.nbjustificatifs}</td>
+              <td>{element.datemodification}</td>
+              <td></td>
+              <td>{element.montantvalide} {element.montantvalide && "€"}</td>
+              <td className="buttons-line"> 
+                <button onClick={() => navigate(`/frais/modifier/${element.id_frais}`)} className="edit-button" > 
+                  Modifier
+                </button>
+				        <button onClick={() => handleDelete(element.id_frais)} className="delete-button" > 
+                  Supprimer
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

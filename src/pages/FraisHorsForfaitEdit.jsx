@@ -8,7 +8,7 @@ import {API_URL} from '../services/authService';
 
 function FraisHorsForfaitEdit() {
 	const { id, id2 } = useParams(); // id = id du frais | id2 = id du frais hors forfait
-	const { token } = useAuth();
+	const { user, token } = useAuth();
 	const [loading, setLoading] = useState(true);
 	const [unFraisHorsForfait, setUnFraisHorsForfait] = useState(null);
 
@@ -17,7 +17,7 @@ function FraisHorsForfaitEdit() {
 			try { 
 				const token = localStorage.getItem('token'); 
 				const response = await axios.get(`${API_URL}fraisHF/${id2}`, { headers: { Authorization: `Bearer ${token}` }, }); 
-				setUnFraisHorsForfait(response.data); 
+				setUnFraisHorsForfait(response.data.data); 
 			} catch (error) { 
 				console.error('Erreur:', error); 
 			} finally { 

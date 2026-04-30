@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import {API_URL} from '../services/authService';
 
 function FraisHorsForfait() {
-  const { token } = useAuth();
+  const { user, token } = useAuth();
   const [fraisHorsForfaitList, setFraisHorsForfaitList] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
@@ -48,7 +48,7 @@ function FraisHorsForfait() {
               },
             }
           );
-        setFraisHorsForfaitList(response.data); // Met à jour l'état avec les données de l'API
+        setFraisHorsForfaitList(response.data.data); // Met à jour l'état avec les données de l'API
 		
 		// Calcul du total des frais hors forfait
 		let somme = 0;

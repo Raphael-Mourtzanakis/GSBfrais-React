@@ -6,13 +6,13 @@ import { getCurrentUser, API_URL } from '../services/authService';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
-function FraisForm({unFrais}) {
+function FraisForm({unFrais, desEtats, unMontantSaisi}) {
     const [idFrais, setIdFrais] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [anneeMois, setAnneeMois] = useState("");
     const [nbJustificatifs, setNbJustificatifs] = useState(parseInt(0));
-	const [montant, setMontant] = useState(null);
+	const [montantValide, setMontantValide] = useState(parseInt(0));
 	const [idEtat, setIdEtat] = useState(parseInt(2));
     const navigate = useNavigate();
     const {token} = useAuth();
@@ -21,14 +21,12 @@ function FraisForm({unFrais}) {
 	useEffect(() => { 
 		if (unFrais) { 
 			setIdFrais(unFrais.id_frais);
-			setMontant(unFrais.montantvalide || '');
 			setAnneeMois(unFrais.anneemois);
 			setNbJustificatifs(unFrais.nbjustificatifs);
+			setMontantValide(unFrais.montantvalide);
 			setIdEtat(unFrais.id_etat);
 		} }, [unFrais]
 	);
-
-				unFrais = true; useEffect(() => { setIdFrais(100); }); // Simuler le fait qu'on modifie
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Empêche le rechargement de la page
@@ -40,21 +38,21 @@ function FraisForm({unFrais}) {
 			const unFraisData = { 
 				anneemois: anneeMois,
 				nbjustificatifs: parseInt(nbJustificatifs, 10),
+				montantvalide: parseFloat(montantValide),
+				id_visiteur: getCurrentUser()["id_visiteur"]
 			};
 			if (unFrais) { // Mise à jour d'un frais existant (UPDATE)
 				unFraisData["id_frais"] = idFrais; // ajoute id_frais au JSON unFraisData
-				unFraisData["montantvalide"] = parseFloat(montant);
 				unFraisData["id_etat"] = parseInt(idEtat);
 				const response = await axios.post(
-					`${API_URL}frais/modif`, 
-					unFraisData, 
+					`${API_URL}Frais/modifier`,
+					unFraisData,
 					{ headers: { Authorization: `Bearer ${token}` }, }
 				);
 				console.log(response);
 			} else { // Ajout d'un nouveau frais (CREATE)
-				unFraisData["id_visiteur"] = getCurrentUser()["id_visiteur"];
 				const response = await axios.post(
-					`${API_URL}frais/ajout`,
+					`${API_URL}Frais/ajouter`,
 					unFraisData,
 					{ headers: { Authorization: `Bearer ${token}` }, }
 				);
@@ -101,10 +99,9 @@ function FraisForm({unFrais}) {
 					{unFrais ? // Modification
 						(
 							<select required onChange={(e) => {if (e.target.value >= 1 && e.target.value <= 4) setIdEtat(parseInt(e.target.value))}}>
-								{idEtat == 1 ? 									(<option value="1" selected> Saisie clôturée </option>) 				: (<option value="1"> Saisie clôturée </option>)}
-								{(idEtat != 1 && idEtat != 3 && idEtat != 4) ?	(<option value="2" selected> Fiche créée, saisie en cours </option>) 	: (<option value="2"> Fiche créée, saisie en cours </option>)}
-								{idEtat == 3 ? 									(<option value="3" selected> Remboursée </option>) 						: (<option value="3"> Remboursée </option>)}
-								{idEtat == 4 ? 									(<option value="4" selected> Validée et mise en paiement </option>) 	: (<option value="4"> Validée et mise en paiement </option>)}
+								{desEtats.map((element, index) => (
+									<option value="{element.id}" {...idEtat ? element.id : "selected"}> {element.lib_etat} </option>
+								))}
 							</select>
 						) : // Ajout
 						(
@@ -116,11 +113,20 @@ function FraisForm({unFrais}) {
                 </label>
 
                 <label>
-                    <legend>Montant :</legend>
+                    <legend>Montant saisi :</legend>
                     <input
                         disabled
                         type="number"
-						value={montant}
+						value={unMontantSaisi}
+                    /> €
+                </label>
+
+				<label>
+                    <legend>Montant validé :</legend>
+                    <input
+                        type="number"
+						value={montantValide}
+						onChange={(e) => {if (e.target.value >= 0) setMontantValide(Math.trunc(parseFloat(e.target.value)))}} // Changer la valeur à un nombre décimal supérieur ou égal à 0
                     /> €
                 </label>
 

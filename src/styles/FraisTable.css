@@ -61,7 +61,7 @@ h2
 
 .filtrage
   {
-    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
   }
 
 input[type="checkbox"]
@@ -109,7 +109,7 @@ label
   background-color: #0084ff;
   color: white;
   border-radius: 5px;
-  margin-top: 15px;
+  margin-bottom: 15px;
   font-size: 17px;
   transition: 0.25s ease;
   text-decoration: none;
