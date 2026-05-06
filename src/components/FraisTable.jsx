@@ -45,8 +45,15 @@ function FraisTable() {
     try {
       await axios.delete(
         `${API_URL}Frais/supprimer`,
-        { id_frais: id, id_visiteur: user.id_visiteur },
-        { headers: { Authorization: `Bearer ${token}` }, }
+        { 
+			data: {
+				id_frais: id,
+				id_visiteur: user.id_visiteur
+			},
+			headers: { 
+				Authorization: `Bearer ${token}` 
+			}
+		}
       );
       // Met à jour fraisList en ignorant le frais supprimé
       setFraisList(
