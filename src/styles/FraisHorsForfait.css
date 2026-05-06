@@ -121,6 +121,7 @@ button:hover {
     text-decoration: none;
     display: block;
     width: 67px;
+	height: 41px;
   }
 
 .back-button:hover

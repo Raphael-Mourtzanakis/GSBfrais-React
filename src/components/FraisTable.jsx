@@ -9,6 +9,7 @@ import {API_URL} from '../services/authService';
 function FraisTable() {
   const { user, token } = useAuth();
   const [fraisList, setFraisList] = useState([]);
+  const [montantSaisi, setUnMontantSaisi] = useState(0);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterMontantValideNonNull, setFilterMontantValideNonNull] = useState(false);
@@ -132,7 +133,6 @@ function FraisTable() {
             <th>ID Visiteur</th>
             <th>Nombre de justificatifs</th>
             <th>Date de modification</th>
-            <th>Montant saisi</th>
             <th>Montant validé</th>
             <th></th>
           </tr>
@@ -146,7 +146,6 @@ function FraisTable() {
               <td>{element.id_visiteur}</td>
               <td>{element.nbjustificatifs}</td>
               <td>{element.datemodification}</td>
-              <td></td>
               <td>{element.montantvalide} {element.montantvalide && "€"}</td>
               <td className="buttons-line"> 
                 <button onClick={() => navigate(`/frais/modifier/${element.id_frais}`)} className="edit-button" > 

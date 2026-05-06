@@ -10,6 +10,7 @@ import FraisEdit from './pages/FraisEdit'
 import FraisHorsForfait from './pages/FraisHorsForfait'
 import FraisHorsForfaitAdd from './pages/FraisHorsForfaitAdd'
 import FraisHorsForfaitEdit from './pages/FraisHorsForfaitEdit'
+import SpecialitesPraticien from './pages/SpecialitesPraticien'
 import { AuthProvider } from './context/AuthContext'
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
 			  <Route path="/frais/:id/hors-forfait" element={<PrivateRoute> <FraisHorsForfait/> </PrivateRoute>} />
 			  <Route path="/frais/:id/hors-forfait/ajouter" element={<PrivateRoute> <FraisHorsForfaitAdd/> </PrivateRoute>} />
 			  <Route path="/frais/:id/hors-forfait/modifier/:id2" element={<PrivateRoute> <FraisHorsForfaitEdit/> </PrivateRoute>} />
+			  <Route path="/praticien/:id/specialites/lister" element={<PrivateRoute> <SpecialitesPraticien/> </PrivateRoute>} />
             </Routes>
           </div>
         </AuthProvider>

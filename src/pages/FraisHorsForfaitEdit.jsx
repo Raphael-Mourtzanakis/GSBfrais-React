@@ -15,8 +15,9 @@ function FraisHorsForfaitEdit() {
 	useEffect(() => { 
 		const fetchFraisHorsForfait = async () => {
 			try { 
-				const token = localStorage.getItem('token'); 
-				const response = await axios.get(`${API_URL}fraisHF/${id2}`, { headers: { Authorization: `Bearer ${token}` }, }); 
+				const token = localStorage.getItem('token');
+				const response = await axios.get(`${API_URL}Frais/hors-forfait/obtenir/${id2}/${user.id_visiteur}`,
+					{ headers: { Authorization: `Bearer ${token}` }, }); 
 				setUnFraisHorsForfait(response.data.data); 
 			} catch (error) { 
 				console.error('Erreur:', error); 

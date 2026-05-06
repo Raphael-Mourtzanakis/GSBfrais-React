@@ -43,7 +43,7 @@ function FraisHorsForfaitForm({idFrais, unFraisHorsForfait}) {
 			if (unFraisHorsForfait) { // Mise à jour d'un frais existant (UPDATE)
 				unFraisHorsForfaitData["id_fraishorsforfait"] = idFraisHorsForfait; // ajoute id_fraishorsforfait au JSON unFraisHorsForfaitData
 				const response = await axios.post(
-					`${API_URL}fraisHF/modif`, 
+					`${API_URL}Frais/hors-forfait/modifier`, 
 					unFraisHorsForfaitData, 
 					{ headers: { Authorization: `Bearer ${token}` }, }
 				);
@@ -51,13 +51,13 @@ function FraisHorsForfaitForm({idFrais, unFraisHorsForfait}) {
 			} else { // Ajout d'un nouveau frais (CREATE)
 				unFraisHorsForfaitData["id_frais"] = idFrais;
 				const response = await axios.post(
-					`${API_URL}fraisHF/ajout`,
+					`${API_URL}Frais/hors-forfait/ajouter`,
 					unFraisHorsForfaitData,
 					{ headers: { Authorization: `Bearer ${token}` }, }
 				);
 				console.log(response);
 			}
-            navigate('/dashboard'); // Redirige vers /dashboard si succès
+            navigate(`/frais/${idFrais}/hors-forfait}`); // Redirige vers la liste des frais hors forfait du frais si succès
         } catch(error) {
             console.error('Erreur:', error);
             setError(error.response?.data?.message || error.message || 'Erreur lors de l\'enregistrement');

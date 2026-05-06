@@ -90,6 +90,7 @@ function FraisForm({unFrais, desEtats, unMontantSaisi}) {
                         type="number"
                         value={nbJustificatifs}
                         min="0"
+						max="999999999"
                         onChange={(e) => {if (e.target.value >= 0) setNbJustificatifs(Math.trunc(parseInt(e.target.value)))}} // Changer la valeur à un entier supérieur ou égal à 0 en enlevant les chiffres après la virgule et la virgule
                     />
                 </label>
@@ -112,21 +113,22 @@ function FraisForm({unFrais, desEtats, unMontantSaisi}) {
 					}
                 </label>
 
+				<label>
+                    <legend>Montant validé :</legend>
+                    <input
+                        type="number"
+						value={montantValide}
+						max="99999999"
+						onChange={(e) => {if (e.target.value >= 0) setMontantValide(Math.trunc(parseFloat(e.target.value)))}} // Changer la valeur à un nombre décimal supérieur ou égal à 0
+                    /> €
+                </label>
+
                 <label>
                     <legend>Montant saisi :</legend>
                     <input
                         disabled
                         type="number"
 						value={unMontantSaisi}
-                    /> €
-                </label>
-
-				<label>
-                    <legend>Montant validé :</legend>
-                    <input
-                        type="number"
-						value={montantValide}
-						onChange={(e) => {if (e.target.value >= 0) setMontantValide(Math.trunc(parseFloat(e.target.value)))}} // Changer la valeur à un nombre décimal supérieur ou égal à 0
                     /> €
                 </label>
 

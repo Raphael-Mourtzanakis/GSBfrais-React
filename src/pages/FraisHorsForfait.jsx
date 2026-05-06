@@ -19,9 +19,9 @@ function FraisHorsForfait() {
   
   	try {
   		await axios.delete(
-  			`${API_URL}fraisHF/suppr`,
+  			`${API_URL}Frais/hors-forfait/supprimer`,
   			{
-  				data: {id_fraishorsforfait: idFraisHF},
+  				data: {id_fraishorsforfait: idFraisHF, id_visiteur: user.id_visiteur},
   				headers: { 
                 	Authorization: `Bearer ${token}`, 
             	}
@@ -39,9 +39,8 @@ function FraisHorsForfait() {
   useEffect(() => { 
     const fetchFraisHF = async () => { 
       try {
-        // Requête get à l'API à l'url 'http://gsb.julliand.etu.lmdsio.com/api/fraisHF/liste/{id}
           const response = await axios.get(
-            `${API_URL}fraisHF/liste/${id}`,
+            `${API_URL}Frais/${id}/hors-fofait/lister/${user.id_visiteur}`,
             { 
               headers: { 
                 Authorization: `Bearer ${token}`, 
@@ -68,7 +67,7 @@ function FraisHorsForfait() {
     fetchFraisHF(); // Appelle la fonction pour récupérer les données 
   }, []); // Tableau de dépendances vide = exécute une seule fois
 
-  if (loading) return <div className="frais-table-container chargement">Chargement des frais...</div>;
+  if (loading) return <div className="frais-table-container chargement">Chargement des frais hors forfait...</div>;
 
   return (
     <div className="frais-hors-forfait-page">
