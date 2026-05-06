@@ -1,4 +1,4 @@
-import '../styles/FraisTable.css'
+import '../styles/Table.css'
 import '../styles/FraisHorsForfait.css'
 import FraisHorsForfaitTable from '../components/FraisHorsForfaitTable'
 import { useParams } from 'react-router-dom';

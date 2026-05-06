@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import '../styles/FraisTable.css'
+import '../styles/Table.css'
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import {Link} from 'react-router-dom';
@@ -127,7 +127,7 @@ function FraisTable() {
         <thead>
           <tr>
             <th>ID Frais</th>
-            <th>ID État</th>
+            <th>État</th>
             <th>Année-Mois</th>
             <th>ID Visiteur</th>
             <th>Nombre de justificatifs</th>
@@ -141,7 +141,7 @@ function FraisTable() {
           {filteredFrais.map((element, index) => (
             <tr key={element.id}>
               <td>{element.id_frais}</td>
-              <td>{element.id_etat}</td>
+              <td>{element.lib_etat}</td>
               <td>{element.anneemois}</td>
               <td>{element.id_visiteur}</td>
               <td>{element.nbjustificatifs}</td>

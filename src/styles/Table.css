@@ -186,5 +186,23 @@ label
   {
 	display: flex;
 	gap: 8px;
-	margin-right: 5px;
+  }
+
+.textButton
+  {
+	background-color: rgba(255, 255, 255, 0);
+	color: rgb(0, 123, 255);
+	text-decoration: underline;
+	font-size: 16px;
+	transition: 0.15s ease;
+  }
+.textButton:hover
+  {
+	background-color: rgba(255, 255, 255, 0);
+	color: rgb(0, 170, 255);
+  }
+.textButton:active
+  {
+	background-color: rgba(255, 255, 255, 0);
+	color: rgb(0, 94, 255);
   }

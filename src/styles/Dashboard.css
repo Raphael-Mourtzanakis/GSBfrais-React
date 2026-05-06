@@ -38,3 +38,9 @@ input[type="number"] :: (flèches)
         cursor: pointer;
     }
 */
+
+.Tables
+	{
+		gap: 50px;
+		display: grid;
+	}
