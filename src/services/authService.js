@@ -3,7 +3,8 @@ import axios from 'axios';
 
 // URL de l'API
 //export const API_URL = 'http://gsb.julliand.etu.lmdsio.com/api/';
-export const API_URL = 'http://localhost:8000/api/';
+//export const API_URL = 'http://localhost:8000/api/';
+export const API_URL = 'http://gsbfrais-laravel.mourtzanakis.etu.lmdsio.com/api/';
 
 export const signIn = async (login, password) => { 
     const response = await axios.post(`${API_URL}Visiteur/authentifier`, {login: login, password: password }); 
