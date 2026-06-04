@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
+import Praticiens from './pages/Praticiens'
 import FraisAdd from './pages/FraisAdd'
 import FraisEdit from './pages/FraisEdit'
 import FraisHorsForfait from './pages/FraisHorsForfait'
@@ -26,12 +27,13 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<PrivateRoute> <Dashboard/> </PrivateRoute>} />
+              <Route path="/praticiens" element={<PrivateRoute> <Praticiens/> </PrivateRoute>} />
               <Route path="/frais/ajouter" element={<PrivateRoute> <FraisAdd/> </PrivateRoute>} />
               <Route path="/frais/modifier/:id" element={<PrivateRoute> <FraisEdit/> </PrivateRoute>} />
-			  <Route path="/frais/:id/hors-forfait" element={<PrivateRoute> <FraisHorsForfait/> </PrivateRoute>} />
-			  <Route path="/frais/:id/hors-forfait/ajouter" element={<PrivateRoute> <FraisHorsForfaitAdd/> </PrivateRoute>} />
-			  <Route path="/frais/:id/hors-forfait/modifier/:id2" element={<PrivateRoute> <FraisHorsForfaitEdit/> </PrivateRoute>} />
-			  <Route path="/praticien/:id/specialites/lister" element={<PrivateRoute> <SpecialitesPraticien/> </PrivateRoute>} />
+              <Route path="/frais/:id/hors-forfait" element={<PrivateRoute> <FraisHorsForfait/> </PrivateRoute>} />
+              <Route path="/frais/:id/hors-forfait/ajouter" element={<PrivateRoute> <FraisHorsForfaitAdd/> </PrivateRoute>} />
+              <Route path="/frais/:id/hors-forfait/modifier/:id2" element={<PrivateRoute> <FraisHorsForfaitEdit/> </PrivateRoute>} />
+              <Route path="/praticien/:id/specialites/lister" element={<PrivateRoute> <SpecialitesPraticien/> </PrivateRoute>} />
             </Routes>
           </div>
         </AuthProvider>
