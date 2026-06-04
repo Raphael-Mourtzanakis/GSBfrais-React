@@ -11,6 +11,8 @@ function PraticienTable() {
   const [praticienList, setPraticienList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm2, setSearchTerm2] = useState('');
+  const [minCoef, setMinCoef] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => { 
@@ -38,9 +40,14 @@ function PraticienTable() {
 
   // Logique de filtrage : filtre les frais en fonction du terme de recherche
   const filteredPraticien = praticienList
+    .filter((praticien) => (!minCoef || praticien.coef_notoriete >= minCoef)) // le !minCoef est pour éviter de cacher la liste au cas où le champ de coefficient minimum est vide
     .filter((praticien) =>
       praticien.nom_praticien.includes(searchTerm) ||
       praticien.lib_type_praticien.includes(searchTerm)
+    )
+    .filter((praticien) =>
+      praticien.ville_praticien.includes(searchTerm2) ||
+      praticien.cp_praticien.toString().includes(searchTerm2)
     );
 
   return (
@@ -59,7 +66,28 @@ function PraticienTable() {
               onChange={(e) => setSearchTerm(e.target.value)} // Met à jour searchTerm
               size="47"
             />
+            <input
+                type="text"
+                placeholder="Rechercher par ville ou code postal..."
+                value={searchTerm2}
+                onChange={(e) => setSearchTerm2(e.target.value)} // Met à jour searchTerm2
+                size="47"
+              />
             </label>
+        </div>
+
+        <div className="coefficient-minmum">
+          <label>
+              <legend>Affichier les praticiens avec un coefficient minimum à </legend>
+          </label>
+            <input
+              type="number"
+              placeholder="Insérer un coefficient..."
+              value={minCoef}
+              onChange={(e) => { if (e.target.value >= 0) setMinCoef(parseFloat(e.target.value)) }} // Met à jour minCoef si il est supérieur ou égal à 0
+              min="0"
+              step="1"
+            />
         </div>
       </div>
 
